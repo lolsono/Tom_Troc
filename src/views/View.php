@@ -1,0 +1,64 @@
+<?php
+declare(strict_types=1);
+namespace views;
+
+class View {
+
+    public string $title;
+
+    /*
+    *Permet d'afficher le tire de la page
+    */
+    public function __construct($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Cette méthode retourne une page complète. 
+     * @param string $viewPath : le chemin de la vue demandée par le controlleur. 
+     * @param array $params : les paramètres que le controlleur a envoyé à la vue.
+     * @return string
+     */
+    public function render(string $viewName, array $params = []) : void {
+        // On s'occupe de la vue envoyée
+        $viewPath = $this->viewPath($viewName);
+        
+        // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
+        $content = $this->_renderViewFromTemplate($viewPath, $params);
+        $title = $this->title;
+
+        //bufferisation :
+        ob_start();
+        require("Main.php");
+        echo ob_get_clean();
+    }
+
+    /**
+     * Coeur de la classe, c'est ici qu'est généré ce que le controlleur a demandé. 
+     * @param $viewPath : le chemin de la vue demandée par le controlleur.
+     * @param array $params : les paramètres que le controlleur a envoyés à la vue.
+     * @throws Exception : si la vue n'existe pas.
+     * @return string : le contenu de la vue.
+     */
+    private function _renderViewFromTemplate(string $viewPath, array $params = []) : string
+    {  
+        if (file_exists($viewPath)) {
+            extract($params); // On transforme les diverses variables stockées dans le tableau "params" en véritables variables qui pourront être lues dans le template.
+            ob_start();
+            require($viewPath);
+            return ob_get_clean();
+        } else {
+            throw new \Exception("La vue '$viewPath' est introuvable.");
+        }
+    }
+
+    /**
+     * Cette méthode retourne une page complète. 
+     * @param string $viewName : Nom de la vue demander.
+     * @return string
+     */    
+    private function viewPath (string $viewName) : string {
+        return __DIR__ . '/templates/' . $viewName . '.php';
+    }
+}
