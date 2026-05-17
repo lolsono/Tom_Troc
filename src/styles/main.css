@@ -1,0 +1,68 @@
+/**
+ * Reset css.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+/**
+ * Create var color
+ */
+:root {
+    --lightGrey: #f1f0eb;
+    --textGrey: #A6A6A6;
+    --blackGrey: #292929;
+    --greenPrimary: #00AC66;
+    --articleBackgroundLight: #FAF9F7;
+    --articleBackground: #f5f3ef;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+/**
+ * Parms navigation bar
+ */
+header nav {
+    background-color: var(--articleBackground);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5%;
+    padding: 0 20px;
+    height: 80px;
+}
+
+header nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+header nav li {
+    display: flex;
+    align-items: center;
+}
+
+header nav img {
+    height: 51px;
+    width: 155px;
+    padding-right: 20px!important;
+}
+
+a {
+    color: var(--blackGrey);
+    font-weight: 300;
+    size: 14px;
+}
+
+a:hover {
+    color: var(--greenPrimary);
+}

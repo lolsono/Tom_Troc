@@ -1,4 +1,4 @@
 
-<h1>Le super blog de l'AVBN !</h1>
-<p>Derniers billets du blog :</p>
+<h1>Le super blog</h1>
+<p>super description</p>
 

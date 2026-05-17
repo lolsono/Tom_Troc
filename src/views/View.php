@@ -7,24 +7,21 @@ class View {
     public string $title;
 
     /*
-    *Permet d'afficher le tire de la page
+    *Allows you to display the page title
     */
     public function __construct($title)
     {
         $this->title = $title;
     }
 
-    /**
-     * Cette méthode retourne une page complète. 
-     * @param string $viewPath : le chemin de la vue demandée par le controlleur. 
-     * @param array $params : les paramètres que le controlleur a envoyé à la vue.
-     * @return string
-     */
+/**
+* This method returns a complete page.
+* @param string $viewPath: the path to the view requested by the controller.
+* @param array $params: the parameters that the controller sent to the view.
+* @return void
+*/
     public function render(string $viewName, array $params = []) : void {
-        // On s'occupe de la vue envoyée
         $viewPath = $this->viewPath($viewName);
-        
-        // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
         $content = $this->_renderViewFromTemplate($viewPath, $params);
         $title = $this->title;
 
@@ -35,16 +32,16 @@ class View {
     }
 
     /**
-     * Coeur de la classe, c'est ici qu'est généré ce que le controlleur a demandé. 
-     * @param $viewPath : le chemin de la vue demandée par le controlleur.
-     * @param array $params : les paramètres que le controlleur a envoyés à la vue.
-     * @throws Exception : si la vue n'existe pas.
-     * @return string : le contenu de la vue.
+     * The heart of the class is where what the controller requested is generated.
+     * @param $viewPath : the path to the view requested by the controller.
+     * @param array $params : the parameters that the controller sent to the view.
+     * @throws Exception : if this view doesn't exist
+     * @return string : content of the view.
      */
     private function _renderViewFromTemplate(string $viewPath, array $params = []) : string
     {  
         if (file_exists($viewPath)) {
-            extract($params); // On transforme les diverses variables stockées dans le tableau "params" en véritables variables qui pourront être lues dans le template.
+            extract($params);
             ob_start();
             require($viewPath);
             return ob_get_clean();
@@ -54,8 +51,8 @@ class View {
     }
 
     /**
-     * Cette méthode retourne une page complète. 
-     * @param string $viewName : Nom de la vue demander.
+     * This methode return a path for template 
+     * @param string $viewName : Name of the view requested..
      * @return string
      */    
     private function viewPath (string $viewName) : string {

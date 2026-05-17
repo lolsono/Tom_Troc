@@ -6,22 +6,30 @@ spl_autoload_register('Autoload');
 
 $getParams = $_GET;
 
-//premier routeur
-if (isset($getParams['action']) && $getParams['action'] !== '') {
+try {
 
-    //si le type et Book on envoie sur BookRouter
-    if ($getParams['type'] === 'Book') {
+    if (isset($getParams['action']) && $getParams['action'] !== '') {
 
-        //action si on a le post qui sera plutard la partie 
-        //création du book
-        $BookRouter = new routes\BookRouter();
-        $BookRouter->router($getParams);
+        //si le type et Book on envoie sur BookRouter
+        if ($getParams['type'] === 'Book') {
+
+            //action si on a le post qui sera plutard la partie 
+            //création du book
+            $BookRouter = new routes\BookRouter();
+            $BookRouter->router($getParams);
+
+        } else {
+            echo "Erreur 404 : la page que vous recherchez n'existe pas.";
+        }
 
     } else {
-        echo "Erreur 404 : la page que vous recherchez n'existe pas.";
+        //rediriger sur l'acceuil
+        $HomeController = new \controllers\HomeController();
+        $HomeController->showHome();
     }
 
-} else {
-    //rediriger sur l'acceuil
-    echo "page d'acceuil";
+} catch (Exception $e) {
+    // En cas d'erreur, on affiche la page d'erreur.
+    $errorView = new View('Erreur');
+    $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
 }

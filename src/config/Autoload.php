@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 /**
- * Système d'autoload. 
- * A chaque fois que PHP va avoir besoin d'une classe, il va appeler cette fonction 
- * et chercher dnas les divers dossiers (ici models, controllers, views ) s'il trouve 
- * un fichier avec le bon nom. Si c'est le cas, il l'inclut avec require_once.
- */
+* Autoload system.
+* Whenever PHP needs a class, it will call this function
+* and search the various directories (here models, controllers, views) to see if it finds
+* a file with the correct name. If so, it includes it with require_once.
+*/
 spl_autoload_register('Autoload');
 
 function Autoload($className) {
