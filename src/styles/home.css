@@ -1,0 +1,201 @@
+/**
+ * Article Hamza
+ */
+.joinHamza {
+    background-color: var(--articleBackground);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.joinHamza .picture {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.joinHamza .picture img {
+    display: flex;
+    flex-direction: column;
+    height: 538px;
+    width: 404px;
+}
+
+.joinHamza .picture figcaption {
+    font-weight: 400;
+    font-size: 12px;
+    font-style: italic;
+    color: #A6A6A6;
+    margin-top: 10px;
+}
+
+.joinHamza .text {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.joinHamza .text h2 {
+    font-weight: 400;
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-family: "Playfair Display", serif;
+}
+
+.joinHamza .text p {
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #292929;
+}
+
+/**
+ * Article last book
+ */
+.lastBook {
+    background-color: var(--articleBackgroundLight);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.lastBook p {
+    margin-bottom: 70px;
+}
+
+.lastBook h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 32px;
+    margin-bottom: 70px;
+}
+
+/**
+ * Article how work
+ */
+.howWork {
+    background-color: var(--articleBackground);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.howWork h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.howWork p {
+    font-family: "inter", serif;
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #292929;
+}
+
+.howWork ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.howWork li {
+    display: flex;
+    align-items: center;
+    font-family: "inter", serif;
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 40px;
+    color: #292929;
+    height: 140px;
+    width: 15%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+    margin-right: 40px;
+}
+
+/**
+ * head band
+ */
+.headbandHomepage {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+/**
+ * head band
+ */
+.valueTomTroc {
+    background-color: var(--articleBackground);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 35%;
+    padding-right: 35%;
+}
+
+.valueTomTroc h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.valueTomTroc p:not(.teamTomTroc) {
+    font-family: "inter", serif;
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #292929;
+}
+
+.teamTomTroc {
+    color: #A6A6A6;
+    font-family: "inter", serif;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.valueTomTroc img {
+    height: 120px;
+    width: 102px;
+}
+
+.valueTomTroc div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

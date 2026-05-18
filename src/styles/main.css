@@ -26,6 +26,40 @@ body {
 }
 
 /**
+ * Parms button green
+ */
+article a:not(.buttonWhiteGreen) {
+    background-color: var(--greenPrimary);
+    color: white;
+    width: 10%;
+    height: 63px;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    min-width: 150px;
+}
+
+/**
+ * Parms button white green
+ */
+.buttonWhiteGreen {
+    background-color: var(--lightGrey);
+    color: white;
+    width: 10%;
+    height: 63px;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    min-width: 150px;
+}
+
+/**
  * Parms navigation bar
  */
 header nav {
@@ -57,12 +91,12 @@ header nav img {
     padding-right: 20px!important;
 }
 
-a {
+li a {
     color: var(--blackGrey);
     font-weight: 300;
     size: 14px;
 }
 
-a:hover {
+li a:hover {
     color: var(--greenPrimary);
 }
