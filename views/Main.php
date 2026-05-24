@@ -13,8 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="src/styles/main.css">
-    <link rel="stylesheet" href="src/styles/home.css">
+    <link rel="stylesheet" href="public/styles/main.css">
+    <link rel="stylesheet" href="public/styles/home.css">
     <!-- Police Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,8 +43,14 @@
     </main>
     
     <footer>
-        <p>Bas de page</p>
+        <nav class="footer">
+            <ul>
+                <li><a href="index.php">Politique de confidentialité</a></li>
+                <li><a href="index.php">Mentions légales</a></li>
+                <li><p>Tom Troc©</p></li>
+                <li><img src="public/img/logo_no_write.svg" alt="logo du site TomTroc"/></li>
+            </ul>
+        </nav>
     </footer>
-
 </body>
 </html>

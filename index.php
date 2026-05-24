@@ -3,6 +3,7 @@
 declare(strict_types=1);
 require_once 'src/config/Autoload.php';
 spl_autoload_register('Autoload');
+use App\views\View;
 
 $getParams = $_GET;
 
@@ -15,7 +16,7 @@ try {
 
             //action si on a le post qui sera plutard la partie 
             //création du book
-            $BookRouter = new routes\BookRouter();
+            $BookRouter = new App\src\routes\BookRouter();
             $BookRouter->router($getParams);
 
         } else {
@@ -24,12 +25,12 @@ try {
 
     } else {
         //rediriger sur l'acceuil
-        $HomeController = new \controllers\HomeController();
+        $HomeController = new App\src\controllers\HomeController();
         $HomeController->showHome();
     }
 
 } catch (Exception $e) {
     // En cas d'erreur, on affiche la page d'erreur.
-    $errorView = new View('Erreur');
+    $errorView = new App\views\View('Erreur');
     $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
 }

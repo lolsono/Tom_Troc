@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace routes;
+namespace App\src\routes;
 
 class BookRouter {
 
@@ -10,7 +10,7 @@ class BookRouter {
 
             //action si on a le post qui sera plutard la partie 
             //création du book
-            $HomeController = new \controllers\HomeController();
+            $HomeController = new App\src\controllers\HomeController();
             $HomeController->showHome();
 
         } else {

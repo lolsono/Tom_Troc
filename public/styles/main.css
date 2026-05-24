@@ -100,3 +100,16 @@ li a {
 li a:hover {
     color: var(--greenPrimary);
 }
+
+/**
+ * Parms footer
+ */
+.footer ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.footer li {
+    margin-right: 20px;
+}

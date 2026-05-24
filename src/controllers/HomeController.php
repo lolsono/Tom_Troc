@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace controllers;
+namespace App\src\controllers;
 
 class HomeController {
 
     //view Homepage
     public function showHome () {
-        $view = new \views\View("Home");
+        $view = new \App\views\View("Home");
         $view->render("Home");
     }
 

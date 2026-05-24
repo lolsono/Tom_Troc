@@ -10,13 +10,21 @@ spl_autoload_register('Autoload');
 
 function Autoload($className) {
 
-    $path = str_replace('\\', '/', $className);
-    $fullPath = "src/$path.php";
+    // project root location
+    $baseDir = __DIR__ . '/../../';
 
-    if (file_exists($fullPath)) {
-        require_once($fullPath);
+    if (strpos($className, 'App\\') === 0) {
+        
+        $path = substr($className, 4);
+        $file = $baseDir . str_replace('\\', '/', $path) . '.php';
 
-    } else {
-        throw new Exception("$className $fullPath");
+        $file = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $file);
+
+        if (file_exists($file)) {
+            require_once($file);
+            return;
+        }
     }
+
+    throw new Exception("Class $className not found in $file");
 }
