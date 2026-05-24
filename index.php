@@ -3,7 +3,6 @@
 declare(strict_types=1);
 require_once 'src/config/Autoload.php';
 spl_autoload_register('Autoload');
-use App\views\View;
 
 $getParams = $_GET;
 
