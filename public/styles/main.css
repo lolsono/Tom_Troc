@@ -47,7 +47,7 @@ article a:not(.buttonWhiteGreen) {
  */
 .buttonWhiteGreen {
     background-color: var(--lightGrey);
-    color: white;
+    color: var(--greenPrimary);
     width: 10%;
     height: 63px;
     display: flex;
@@ -57,6 +57,7 @@ article a:not(.buttonWhiteGreen) {
     font-weight: 600;
     font-size: 16px;
     min-width: 150px;
+    border: solid 1px var(--greenPrimary);
 }
 
 /**

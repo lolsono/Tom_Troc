@@ -7,11 +7,12 @@ class HomeController {
 
     //view Homepage
     public function showHome () {
+
+        $bookmanager = new \App\src\models\BookManager();
+        $books = $bookmanager->getAllBook();
+
         $view = new \App\views\View("Home");
-        $view->render("Home");
+        $view->render("Home", ['books' => $books] );
     }
 
-    public function test ($string) : void {
-        echo 'voici mon super text :', $string;
-    }
 }
