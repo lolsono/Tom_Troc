@@ -16,10 +16,6 @@ Class User {
     private string $createAt = ""; 
     private int $book_number;
 
-    //ajout système encryptage pour mdp.
-    //on hash a la reception du formulaire de connexion
-    //on hash à l'envoi à la db et ensuite on compare les deux
-
     /**
      * Setter name
      * @param string $name
@@ -97,7 +93,7 @@ Class User {
     }
 
     /**
-     * Setter de la date de création du compte
+     * Setter the day of create user
      * @param DateTime $createAt
      */
     public function setCreateAt (DateTime $createAt) : self
@@ -108,7 +104,7 @@ Class User {
     }
 
     /**
-     * Getter de la date de création du compt
+     * Getter the day of create user
      * @return string $creatAt
      */
     public function getCreateAt () : string
@@ -117,7 +113,7 @@ Class User {
     }
 
     /**
-     * Setter nombre de livre de l'utilisateur
+     * Setter user book number
      * @param int $book_number
      */
     public function setBookNumber (int $book_number) : self
@@ -127,7 +123,7 @@ Class User {
     }
 
     /**
-     * Getter nombre de livre de l'utilisateur
+     * Getter user book number
      * @return int $book_number
      */
     public function getBookNumber () : int

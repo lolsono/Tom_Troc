@@ -35,7 +35,7 @@
             <ul>
                 <li><a href="index.php">Messagerie</a></li>
                 <li><a href="index.php">Mon compte</a></li>
-                <li><a href="index.php?type=User&action=SingUp">Connexion</a></li>
+                <li><a href="index.php?type=User&action=SingIn">Connexion</a></li>
             </ul>
         </nav>
     </header>

@@ -9,14 +9,12 @@ use DateTime;
 
 class UserManager {
 
-    //vérification des inputs
-
     /**
-     * Vérifie si le mot de passe respecte les critères de sécurité.
-     * @param string $password Le mot de passe en clair.
+     * tcheck input password
+     * @param string $password input
      * @return bool True si valide, false sinon.
      */
-    public static function isPasswordValid(string $password): bool 
+    public function isPasswordValid(string $password): bool 
     {
         if (
             strlen($password) < 8
@@ -31,17 +29,16 @@ class UserManager {
     }
 
     /**
-     * Vérifie si l'email respecte les critères.
+     * tcheck input email
      * @param string $email
-     * @return bool True si valide, false sinon.
+     * @return bool True if validate
      */
-    public static function isEmailValid(string $email): bool 
+    public function isEmailValid(string $email): bool 
     {
         if (
-            !isset($_POST['email'])
-            || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
-            || empty($_POST['email'])
-            || trim($_POST['email'])
+            !filter_var($email, FILTER_VALIDATE_EMAIL)
+            || empty($email)
+            || trim($email) === ""
         ) {
             return false;
         }
@@ -50,17 +47,15 @@ class UserManager {
     }
 
     /**
-     * Vérifie si le pseudo respecte les critères.
+     * tcheck input pseudo
      * @param string $pseudo
-     * @return bool True si valide, false sinon.
+     * @return bool True if validate.
      */
-    public static function isPseudoValid(string $pseudo): bool 
+    public function isPseudoValid(string $pseudo): bool 
     {
         if (
-            !isset($_POST['pseudo'])
-            || iconv_strlen($_POST['pseudo']) < 1
-            || empty($_POST['pseudo'])
-            || trim($_POST['pseudo'])
+            strlen($pseudo) < 2
+            || trim($pseudo) === ""
         ) {
             return false;
         }
@@ -69,9 +64,9 @@ class UserManager {
     }
 
     /**
-     * Fonction d'hachage du mdp
+     * Function hach password
      * @param string $password ( input user form )
-     * @return string $password hacher
+     * @return string $password hach
      */
     public function hachage (string $password) : string
     {
@@ -79,7 +74,7 @@ class UserManager {
     }
 
     /**
-     * Fonction de vérification du mdp utilisateur
+     * function validate password
      * @param string $password
      * @param string $hachpassword
      * @return bool $mdpValidate return true if validate
@@ -90,32 +85,23 @@ class UserManager {
     }
 
     /**
-     * Fonction d'ajout de l'utilisateur en db
+     * function add user in db
      * @param string @data
      */
     public function createUser ($email, $password, $pseudo) : void
     {
-        //transformation du mdp
         $passwordHach = $this->hachage($password);
 
-        //ajout en db
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();
 
-        //gestion de la date
         $dateTime = new DateTime();
-
         $utils = new \App\src\utils\Utils;
         $date = $utils->convertDateToFrenchFormat($dateTime);
 
-        //préparer la requête sql
-
         $sql = "INSERT INTO user(name, password, email, create_at, book_number) VALUES (:name, :password, :email, :create_at, :book_number)";
-
-        // Préparation
         $insertRecipe = $pdo->prepare($sql);
 
-        // Exécution !
         $insertRecipe->execute([
             'name' => $pseudo,
             'password' => $passwordHach,

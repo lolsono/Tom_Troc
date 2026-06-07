@@ -1,31 +1,12 @@
 <form
-    action="index.php?type=User&action=SingUpValidate"
+    action="index.php?type=User&action=SingInValidate"
     method="POST"
     aria-labelledby="form-title"
     novalidate
-    class="FormSignUp"
+    class="FormSignIn"
 >
     <fieldset>
-        <legend id="form-title">Inscription</legend>
-
-        <!-- pseudo -->
-        <div class="form-group">
-            <label for="pseudo">Pseudo</label>
-            <input
-                type="text"
-                id="pseudo"
-                name="pseudo"
-                require
-                minlength="1"
-                maxlength="255"
-                title="Le pseudo doit contenir entre 1 et 255 caractères (lettres, chiffres, underscores)."
-            >
-            <?php if (isset($errors['pseudo'])): ?>
-                <p id="pseudo-error" class="error-message" role="alert">
-                    <?php echo htmlspecialchars($errors['pseudo']); ?>
-                </p>
-            <?php endif; ?>
-        </div>
+        <legend id="form-title">Connexion</legend>
 
         <!-- email -->
         <div class="form-group">
@@ -65,8 +46,8 @@
             S'inscrire
         </button>
 
-        <!-- redirect form log in -->
-         <a href="index.php?type=User&action=SingIn">Déjà inscrit ? Connectez-vous</a>
+        <!-- redirect form Sign Up -->
+         <a href="index.php?type=User&action=SingUp">Pas de compte ? Inscrivez-vous</a>
     </fieldset>
 </form>
 

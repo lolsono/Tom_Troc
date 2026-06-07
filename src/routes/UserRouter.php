@@ -9,7 +9,7 @@ class UserRouter {
         if ($getParams['action'] === 'SingUp') {
 
             $LoginController = new \App\src\controllers\LoginController();
-            $LoginController->showHome();
+            $LoginController->showSignUp();
 
         } elseif ($getParams['action'] === 'SingUpValidate') {
 
@@ -17,6 +17,11 @@ class UserRouter {
             $LoginController->SignUpValidate();
             $LoginController->showHome();    
             
+        }elseif ($getParams['action'] === 'SingIn') {
+
+            $LoginController = new \App\src\controllers\LoginController();
+            $LoginController->showSignIn();
+
         }else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }
