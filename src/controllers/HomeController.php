@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\src\controllers;
 
-class HomeController {
+class HomeController extends CoreController {
 
     //view Homepage
     public function showHome () {
@@ -11,8 +11,7 @@ class HomeController {
         $bookmanager = new \App\src\models\BookManager();
         $books = $bookmanager->getAllBook();
 
-        $view = new \App\views\View("Home");
-        $view->render("Home", ['books' => $books] );
+        $this->view->render("Home", "Home", ['books' => $books] );
     }
 
 }

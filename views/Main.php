@@ -15,6 +15,8 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="public/styles/main.css">
     <link rel="stylesheet" href="public/styles/home.css">
+    <link rel="stylesheet" href="public/styles/book.css">
+    <link rel="stylesheet" href="public/styles/login.css">
     <!-- Police Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +35,7 @@
             <ul>
                 <li><a href="index.php">Messagerie</a></li>
                 <li><a href="index.php">Mon compte</a></li>
-                <li><a href="index.php">Connexion</a></li>
+                <li><a href="index.php?type=User&action=SingUp">Connexion</a></li>
             </ul>
         </nav>
     </header>

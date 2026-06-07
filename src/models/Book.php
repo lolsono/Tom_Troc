@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\src\models;
 
 use DateTime;
+use utils;
 
 class Book {
 
@@ -38,10 +39,16 @@ class Book {
      * Setter pour l'id de l'utilisateur. 
      * @param int $userId
      */
-    public function setIdUser(int $userId) : void 
+    public function setIdUser(int $userId) : self 
     {
-        $this->userId = $userId;
+        $this->userId = $userId; 
+        return $this;
     }
+
+    /**
+     * $book = new book();
+     * $book->setIdUser(1)->setTitle(name);
+     */
 
     /**
      * Getter pour l'id de l'utilisateur.
@@ -56,9 +63,10 @@ class Book {
      * Setter pour le titre.
      * @param string $title
      */
-    public function setTitle(string $title) : void 
+    public function setTitle(string $title) : self 
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -74,9 +82,10 @@ class Book {
      * Setter pour le nom de l'auteur.
      * @param string $nameAutor
      */
-    public function setNameAutor(string $nameAutor) : void 
+    public function setNameAutor(string $nameAutor) : self 
     {
         $this->nameAutor = $nameAutor;
+        return $this;
     }
 
     /**
@@ -92,9 +101,10 @@ class Book {
      * Setter pour la description.
      * @param string $describe
      */
-    public function setDesribe(string $describe) : void 
+    public function setDesribe(string $describe) : self 
     {
         $this->describe = $describe;
+        return $this;
     }
 
      /**
@@ -110,9 +120,10 @@ class Book {
      * Setter pour la disponibilité
      * @param int $availablity
      */
-    public function setAvailablity(int $availablity) : void 
+    public function setAvailablity(int $availablity) : self 
     {
         $this->availablity = $availablity;
+        return $this;
     }
 
     /**
@@ -128,9 +139,10 @@ class Book {
      * Setter pour le lien de l'image ( ver fichier upload )
      * @param string $pictureLink
      */
-    public function setPictureLink(string $pictureLink) : void
+    public function setPictureLink(string $pictureLink) : self
     {
         $this->pictureLink = $pictureLink;
+        return $this;
     }
 
     /**
@@ -142,18 +154,22 @@ class Book {
         return $this->pictureLink;
     }
     
-    /** Setter pour la date de publication du book
-     * @param DateTime
+    /**
+     * Setter de la date de création du compte
+     * @param DateTime $createAt
      */
-    public function setCreateAt($DateTime) : void
+    public function setCreateAt (DateTime $createAt) : self
     {
-        $this->createAt = $DateTime;
+        $date = utils::convertDateToFrenchFormat($createAt);
+        $this->createAt = $date;
+        return $this;
     }
 
-    /** Getter pour la date de publication du book
-     * @return string
+    /**
+     * Getter de la date de création du compt
+     * @return string $creatAt
      */
-    public function getCreateAt() : string
+    public function getCreateAt () : string
     {
         return $this->createAt;
     }

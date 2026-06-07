@@ -9,28 +9,33 @@ $getParams = $_GET;
 
 try {
 
+    //Managing redirection to the app's various routers
+
     if (isset($getParams['action']) && $getParams['action'] !== '') {
 
         //si le type et Book on envoie sur BookRouter
         if ($getParams['type'] === 'Book') {
 
-            //action si on a le post qui sera plutard la partie 
-            //création du book
             $BookRouter = new App\src\routes\BookRouter();
             $BookRouter->router($getParams);
 
-        } else {
+        } elseif ($getParams['type'] === 'User') {
+
+            $UserRouter = new App\src\routes\UserRouter();
+            $UserRouter->router($getParams);
+            
+        }else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }
 
     } else {
-        //rediriger sur l'acceuil
+        //redirect home page
         $HomeController = new App\src\controllers\HomeController();
         $HomeController->showHome();
     }
 
 } catch (Exception $e) {
-    // En cas d'erreur, on affiche la page d'erreur.
+    // I capture the error and display it 
     $errorView = new App\views\View('Erreur');
     $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
 }

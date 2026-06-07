@@ -4,23 +4,17 @@ namespace App\views;
 
 class View {
 
-    public string $title;
+    private string $title = "";
 
-    /*
-    *Allows you to display the page title
-    */
-    public function __construct($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
+/**
     * This method returns a complete page.
+    * @param string $viewName : title page on the folder views
+    * @param string $title : title from page html
     * @param string $viewPath: the path to the view requested by the controller.
     * @param array $params: the parameters that the controller sent to the view.
     * @return void
     */
-    public function render(string $viewName, array $params = []) : void {
+    public function render(string $viewName, string $title, array $params = []) : void {
         $viewPath = $this->viewPath($viewName);
         $content = $this->_renderViewFromTemplate($viewPath, $params);
         $title = $this->title;
