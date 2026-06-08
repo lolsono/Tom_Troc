@@ -7,7 +7,7 @@ use password_hash;
 use password_verify;
 use DateTime;
 
-class UserManager {
+class UserManager extends User {
 
     /**
      * tcheck input password
@@ -64,13 +64,22 @@ class UserManager {
     }
 
     /**
-     * Function hach password
-     * @param string $password ( input user form )
-     * @return string $password hach
+     * Search with email user
+     * @param string $email
      */
-    public function hachage (string $password) : string
+    public function SearchEmailUser ($email) : array
     {
-       return password_hash($password, PASSWORD_DEFAULT);
+        //valider le pass en db
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "SELECT * FROM user WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $recipes = $stmt->fetchAll();
+        
+        return $recipes;  
     }
 
     /**
@@ -79,9 +88,24 @@ class UserManager {
      * @param string $hachpassword
      * @return bool $mdpValidate return true if validate
      */
-    public function passwordValidate (string $password, string $hachpassword) : bool
+    public function passwordValidate (string $password, string $email) : bool
     {
-       return password_verify($password, $hachpassword);
+        $user = $this->SearchEmailUser($email);
+        $user = $user[0];
+        $hachpassword = $user["password"];
+        var_dump($user);
+
+        return password_verify($password, $hachpassword);
+    }
+
+    /**
+     * Function hach password
+     * @param string $password ( input user form )
+     * @return string $password hach
+     */
+    public function hachage (string $password) : string
+    {
+       return password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**

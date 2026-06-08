@@ -15,13 +15,23 @@ class UserRouter {
 
             $LoginController = new \App\src\controllers\LoginController();
             $LoginController->SignUpValidate();
-            $LoginController->showHome();    
+            $LoginController->showSignUp();    
             
         }elseif ($getParams['action'] === 'SingIn') {
 
             $LoginController = new \App\src\controllers\LoginController();
             $LoginController->showSignIn();
 
+        }elseif ($getParams['action'] === 'SingInValidate') {
+
+            $LoginController = new \App\src\controllers\LoginController();
+            $LoginController->SignInValidate();
+            
+        }elseif ($getParams['action'] === 'UserPage') {
+
+            $LoginController = new \App\src\controllers\LoginController();
+            $LoginController->showUserPage();
+            
         }else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }
