@@ -1,54 +1,53 @@
-<form
-    action="index.php?type=User&action=SingInValidate"
-    method="POST"
-    aria-labelledby="form-title"
-    novalidate
-    class="FormSignIn"
->
-    <fieldset>
-        <legend id="form-title">Connexion</legend>
+<div class="FormUser">
+    <form
+        action="index.php?type=User&action=SingInValidate"
+        method="POST"
+        aria-labelledby="form-title"
+        novalidate
+    >
+        <fieldset>
+            <legend id="form-title">Connexion</legend>
 
-        <!-- email -->
-        <div class="form-group">
-            <label for="email">Adresse email</label>
-            <input
-                type="email"
-                id="email"
-                name="email"
-            >
-            <?php if (isset($errors['email'])): ?>
-                <p id="email-error" class="error-message" role="alert">
-                    <?php echo htmlspecialchars($errors['email']); ?>
-                </p>
+            <?php if (isset($_SESSION['error']) && !empty($_SESSION['error'])): ?>
+                <p class="error"><?= htmlspecialchars($_SESSION['error']) ?></p>
             <?php endif; ?>
-        </div>
 
-        <!-- password -->
-        <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                required
-                minlength="8"
-                title="Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
-            >
-            <?php if (isset($errors['password'])): ?>
-                <p id="password-error" class="error-message" role="alert">
-                    <?php echo htmlspecialchars($errors['password']); ?>
-                </p>
-            <?php endif; ?>
-        </div>
+            <!-- email -->
+            <div class="form-group">
+                <label for="email">Adresse email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                >
+            </div>
 
-        <!-- submit button -->
-        <button type="submit" class="submit-button">
-            S'inscrire
-        </button>
+            <!-- password -->
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    minlength="8"
+                    title="Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
+                >
+            </div>
 
-        <!-- redirect form Sign Up -->
-         <a href="index.php?type=User&action=SingUp">Pas de compte ? Inscrivez-vous</a>
-    </fieldset>
-</form>
+            <!-- submit button -->
+            <button type="submit" class="buttonWhiteGreen">
+                S'inscrire
+            </button>
+
+            <!-- redirect form Sign Up -->
+            <a class="link-page" href="index.php?type=User&action=SingUp">Pas de compte ? <span class="underline">Inscrivez-vous</span></a>
+        </fieldset>
+    </form>
+    
+    <img src="public/img/img_log_user_book.svg" alt="image de livre"/>
+
+</div>
+
 
 

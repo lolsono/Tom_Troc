@@ -35,14 +35,28 @@ class LoginController extends CoreController {
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            if (
-                $UserManager->isPasswordValid($password)
-                && $UserManager->isEmailValid($email)
-                && $UserManager->isPseudoValid($pseudo)
-            ) {
-                $UserManager->createUser($email, $password, $pseudo);
-            }else {
-                echo "il y a une erreure dans les identifiants";
+            if ($UserManager->isPseudoValid($pseudo)) {
+
+                if ($UserManager->isEmailValid($email)) {
+
+                    if ($UserManager->isPasswordValid($password)) {
+
+                        $_SESSION['error'] = "";
+                        $UserManager->createUser($email, $password, $pseudo);
+
+                    }else {
+                        $_SESSION['error'] = "Mot de passe incorrect";
+                        header("Location: /Tom_Troc/index.php?type=User&action=SingUp");                       
+                    }
+
+                } else {
+                    $_SESSION['error'] = "Adresse email invalide";
+                    header("Location: /Tom_Troc/index.php?type=User&action=SingUp");
+                }
+
+            } else {
+                $_SESSION['error'] = "Pseudo invalide";
+                header("Location: /Tom_Troc/index.php?type=User&action=SingUp");
             }
 
         } else {
@@ -57,25 +71,28 @@ class LoginController extends CoreController {
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $UserManager = new \App\src\models\UserManager;
+            $UserManager = new \App\src\models\UserManager;
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
-        if (
-            $UserManager->passwordValidate($password, $email)
-            && $UserManager->isEmailValid($email)
-        ) {
-            //ajout d'une variable de connexion;
-            echo "mot de pass ok user connecter";
-            header("Location: /Tom_Troc/index.php?type=User&action=UserPage");
-        }else {
-            echo "il y a une erreure dans les identifiants";
+            if ($UserManager->isEmailValid($email)) {
+
+                if ($UserManager->passwordValidate($password, $email)) {
+                    header("Location: /Tom_Troc/index.php?type=User&action=UserPage");
+                    $_SESSION['error'] = "";
+                } else {
+                    $_SESSION['error'] = "Mot de passe incorrect";
+                    header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
+                }
+            } else {
+                $_SESSION['error'] = "Adresse email invalide";
+                header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
+            }
+
+        } else {
+            exit;
         }
-
-    } else {
-        exit;
-    }
 
     }
 
