@@ -33,9 +33,13 @@
             </ul>
             <!-- add the dynamique bar -->
             <ul>
-                <li><a href="index.php">Messagerie</a></li>
-                <li><a href="index.php">Mon compte</a></li>
-                <li><a href="index.php?type=User&action=SingIn">Connexion</a></li>
+                <?php if (isset($_SESSION['id']) && $_SESSION['id'] >= 0 ) : ?>
+                    <li><a href="index.php">Messagerie</a></li>
+                    <li><a href="index.php?type=User&action=UserPage">Mon compte</a></li>
+                    <li><a href="index.php?type=User&action=LogOut">Deconexion</a></li>
+                <?php else: ?>
+                    <li><a href="index.php?type=User&action=SingIn">Connexion</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

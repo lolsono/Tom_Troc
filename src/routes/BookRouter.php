@@ -8,11 +8,14 @@ class BookRouter {
 
         if ($getParams['action'] === 'post') {
 
-            //action si on a le post qui sera plutard la partie 
-            //création du book
-            $HomeController = new App\src\controllers\HomeController();
+            $HomeController = new \App\src\controllers\HomeController();
             $HomeController->showHome();
 
+        } elseif ($getParams['action'] === 'addBook') {
+
+            $BookController = new \App\src\controllers\BookController();
+            $BookController->showForm();
+            
         } else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }

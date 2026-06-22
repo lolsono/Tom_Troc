@@ -3,65 +3,9 @@ declare(strict_types=1);
 
 namespace App\src\models;
 
-use password_hash;
-use password_verify;
 use DateTime;
 
 class UserManager extends User {
-
-    /**
-     * tcheck input password
-     * @param string $password input
-     * @return bool True si valide, false sinon.
-     */
-    public function isPasswordValid(string $password): bool 
-    {
-        if (
-            strlen($password) < 8
-            || !preg_match('/[A-Z]/', $password)
-            || !preg_match('/[a-z]/', $password)
-            || !preg_match('/[^a-zA-Z0-9]/', $password)
-        ) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * tcheck input email
-     * @param string $email
-     * @return bool True if validate
-     */
-    public function isEmailValid(string $email): bool 
-    {
-        if (
-            !filter_var($email, FILTER_VALIDATE_EMAIL)
-            || empty($email)
-            || trim($email) === ""
-        ) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * tcheck input pseudo
-     * @param string $pseudo
-     * @return bool True if validate.
-     */
-    public function isPseudoValid(string $pseudo): bool 
-    {
-        if (
-            strlen($pseudo) < 2
-            || trim($pseudo) === ""
-        ) {
-            return false;
-        }
-
-        return true;
-    }
 
     /**
      * Search with email user
@@ -77,35 +21,27 @@ class UserManager extends User {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $recipes = $stmt->fetchAll();
+        $recipes = $stmt->fetch();
         
         return $recipes;  
     }
 
     /**
-     * function validate password
-     * @param string $password
-     * @param string $hachpassword
-     * @return bool $mdpValidate return true if validate
+     * function information read user
+     * @param null
      */
-    public function passwordValidate (string $password, string $email) : bool
+    public function getUser () : void
     {
-        $user = $this->SearchEmailUser($email);
-        $user = $user[0];
-        $hachpassword = $user["password"];
-        var_dump($user);
 
-        return password_verify($password, $hachpassword);
     }
 
     /**
-     * Function hach password
-     * @param string $password ( input user form )
-     * @return string $password hach
+     * create objet user with array
+     * @param array $user
      */
-    public function hachage (string $password) : string
+    public function createUserFromArray(array $userData) : user
     {
-       return password_hash($password, PASSWORD_DEFAULT);
+
     }
 
     /**
@@ -114,7 +50,8 @@ class UserManager extends User {
      */
     public function createUser ($email, $password, $pseudo) : void
     {
-        $passwordHach = $this->hachage($password);
+        $Password = new \App\src\utils\Password;
+        $passwordHach = $Password->hachage($password);
 
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();

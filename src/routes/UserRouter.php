@@ -6,31 +6,32 @@ class UserRouter {
 
     public function router(array $getParams) {
 
+        $LoginController = new \App\src\controllers\LoginController();
+
         if ($getParams['action'] === 'SingUp') {
 
-            $LoginController = new \App\src\controllers\LoginController();
             $LoginController->showSignUp();
 
         } elseif ($getParams['action'] === 'SingUpValidate') {
 
-            $LoginController = new \App\src\controllers\LoginController();
             $LoginController->SignUpValidate();
             $LoginController->showSignUp();    
             
         }elseif ($getParams['action'] === 'SingIn') {
 
-            $LoginController = new \App\src\controllers\LoginController();
             $LoginController->showSignIn();
 
         }elseif ($getParams['action'] === 'SingInValidate') {
 
-            $LoginController = new \App\src\controllers\LoginController();
             $LoginController->SignInValidate();
             
         }elseif ($getParams['action'] === 'UserPage') {
 
-            $LoginController = new \App\src\controllers\LoginController();
             $LoginController->showUserPage();
+            
+        }elseif ($getParams['action'] === 'LogOut') {
+
+            $LoginController->logOut();
             
         }else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";

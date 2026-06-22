@@ -23,26 +23,39 @@ class LoginController extends CoreController {
     }
 
     /**
+     * Log out
+     */
+    public function logOut () : void
+    {
+        session_destroy();
+        header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
+
+        //suppresion de l'utilisateur
+    }
+
+    /**
      * Manage form create user
      */
     public function SignUpValidate () : void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            $FormManager = new \App\src\models\FormManager;
             $UserManager = new \App\src\models\UserManager;
 
             $pseudo = $_POST['pseudo'];
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            if ($UserManager->isPseudoValid($pseudo)) {
+            if ($FormManager->isPseudoValid($pseudo)) {
 
-                if ($UserManager->isEmailValid($email)) {
+                if ($FormManager->isEmailValid($email)) {
 
-                    if ($UserManager->isPasswordValid($password)) {
+                    if ($FormManager->isPasswordValid($password)) {
 
                         $_SESSION['error'] = "";
                         $UserManager->createUser($email, $password, $pseudo);
+                        header("Location: /Tom_Troc/index.php?type=User&action=SignIn"); 
 
                     }else {
                         $_SESSION['error'] = "Mot de passe incorrect";
@@ -71,21 +84,33 @@ class LoginController extends CoreController {
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            $FormManager = new \App\src\models\FormManager;
             $UserManager = new \App\src\models\UserManager;
+            $Password = new \App\src\utils\Password;
 
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            if ($UserManager->isEmailValid($email)) {
+            if ($FormManager->isEmailValid($email)) {
 
-                if ($UserManager->passwordValidate($password, $email)) {
-                    header("Location: /Tom_Troc/index.php?type=User&action=UserPage");
+                //si mon mail et ok alors on fait la recherche utilisateur
+                $userData = $UserManager->SearchEmailUser($email);
+                $hachpassword = $userData['password'];
+
+                if ($Password->passwordValidate($password, $hachpassword)) {
+
+                    //va déclencher la création de l'utilisateur
+
                     $_SESSION['error'] = "";
+                    $_SESSION['id'] = $userData['id'];
+                    header("Location: /Tom_Troc/index.php?type=User&action=UserPage");  
                 } else {
                     $_SESSION['error'] = "Mot de passe incorrect";
+                    $_SESSION['isLoged'] = false;
                     header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
                 }
             } else {
+                $_SESSION['isLoged'] = false;
                 $_SESSION['error'] = "Adresse email invalide";
                 header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
             }

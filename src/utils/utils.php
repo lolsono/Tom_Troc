@@ -3,21 +3,30 @@
 namespace App\src\utils;
 use DateTime;
 /**
- * Classe utilitaire : cette classe ne contient que des méthodes statiques qui peuvent être appelées
- * directement sans avoir besoin d'instancier un objet Utils.
- * Exemple : Utils::redirect('home'); 
+ * Class utils : create a multiple methode for easy utility.
  */
 class Utils {
     /**
-     * Convertit une date vers le format de type "Samedi 15 juillet 2023" en francais.
-     * @param DateTime $date : la date à convertir.
-     * @return string : la date convertie.
+     * Systeme date convert to format : Y-m-d H:i:s.
+     * @param DateTime $date : date
+     * @return string : return string format
      */
     public static function convertDateToFrenchFormat(DateTime $date) : string
     {
         return $date->format('Y-m-d H:i:s');
     }
 
-    //si il faut plutard modifier le format de la date
+    //ajouter le système d'ajout dans le fichier upload + la lecture d'image
+
+    /**
+     * add img on upload file.
+     * @param img $imgFile
+     */
+    public function addImgFile () : void
+    {
+        //prende le fichier
+        //lui crée un lien et retourner le lien pour le mettre en db
+        //ajout le fichier dans le fichier upload
+    }
 
 }
