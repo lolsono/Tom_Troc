@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace App\views;
 
+use User;
+
 class View {
 
     private string $title = "";
@@ -14,7 +16,8 @@ class View {
     * @param array $params: the parameters that the controller sent to the view.
     * @return void
     */
-    public function render(string $viewName, string $title, array $params = []) : void {
+    public function render(string $viewName, string $title, array $params = []) : void 
+    {
         $viewPath = $this->viewPath($viewName);
         $content = $this->_renderViewFromTemplate($viewPath, $params);
         $title = $this->title;

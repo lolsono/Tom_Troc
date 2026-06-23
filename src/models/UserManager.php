@@ -13,7 +13,6 @@ class UserManager extends User {
      */
     public function SearchEmailUser ($email) : array
     {
-        //valider le pass en db
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();
 
@@ -27,11 +26,25 @@ class UserManager extends User {
     }
 
     /**
-     * function information read user
-     * @param null
+     * function get user by id
+     * @param int $id
      */
-    public function getUser () : void
+    public function getUserById (int $id) : User
     {
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "SELECT * FROM user WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $recipes = $stmt->fetch();
+        
+        if (isset($recipes)) {
+            return $this->createUserFromArray($recipes);
+        } else {
+            return null;
+        }
 
     }
 
@@ -39,9 +52,28 @@ class UserManager extends User {
      * create objet user with array
      * @param array $user
      */
-    public function createUserFromArray(array $userData) : user
+    public function createUserFromArray(array $userData) : User
     {
 
+        $User = new \App\src\models\User;
+
+        if (isset($userData['id'])) {
+            $User->setId($userData['id']);
+        }
+        if (isset($userData['name'])) {
+            $User->setName($userData['name']);
+        }
+        if (isset($userData['email'])) {
+            $User->setEmail($userData['email']);
+        }
+        if (isset($userData['create_at'])) {
+            $User->setCreateAt($userData['create_at']);
+        }
+        if (isset($userData['book_number'])) {
+            $User->setBookNumber($userData['book_number']);
+        }
+
+        return $User;
     }
 
     /**

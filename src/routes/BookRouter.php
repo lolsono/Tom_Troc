@@ -6,15 +6,15 @@ class BookRouter {
 
     public function router(array $getParams) {
 
-        if ($getParams['action'] === 'post') {
+        $BookController = new \App\src\controllers\BookController();
 
-            $HomeController = new \App\src\controllers\HomeController();
-            $HomeController->showHome();
+        if ($getParams['action'] === 'addBook') {
 
-        } elseif ($getParams['action'] === 'addBook') {
-
-            $BookController = new \App\src\controllers\BookController();
             $BookController->showForm();
+            
+        } elseif ($getParams['action'] === 'allBook') {
+
+            $BookController->showAllBook();
             
         } else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";

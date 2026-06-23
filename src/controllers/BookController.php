@@ -6,10 +6,19 @@ namespace App\src\controllers;
 
 class BookController extends CoreController {
 
-    /**affichage des vues */
+    /** print view */
     public function showForm () : void {
 
         $this->view->render("BookForm", "BookForm");
+    }
+
+    /** print view all Book */
+    public function showAllBook () : void {
+
+        $bookmanager = new \App\src\models\BookManager();
+        $books = $bookmanager->getAllBook();
+
+        $this->view->render("AllBook", "AllBook", ['books' => $books] );
     }
 
     /**
@@ -17,7 +26,6 @@ class BookController extends CoreController {
      */
     public function formValidate () : void
     {
-        //premier condition valider que l'utilisateur et bien connecter
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

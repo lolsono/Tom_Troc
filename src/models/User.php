@@ -12,9 +12,27 @@ Class User {
     private string $name;
     private string $password = "";
     private string $email = "";
-    private string $describe = "";
     private string $createAt = ""; 
     private int $book_number;
+
+    /**
+     * Setter id
+     * @param int $id
+     */
+    public function setId (int $id) : self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Getter id
+     * @return int $id
+     */
+    public function getId () : int
+    {
+        return $this->id;
+    }
 
     /**
      * Setter name
@@ -74,32 +92,12 @@ Class User {
     }
 
     /**
-     * Setter describe
-     * @param string $describe
-     */
-    public function setDescribe (string $describe) : self
-    {
-        $this->describe = $describe;
-        return $this;
-    }
-
-    /**
-     * Getter describe
-     * @return string $desribe
-     */
-    public function getDescribe () : string
-    {
-        return $this->describe;
-    }
-
-    /**
      * Setter the day of create user
      * @param DateTime $createAt
      */
-    public function setCreateAt (DateTime $createAt) : self
+    public function setCreateAt (string $createAt) : self
     {
-        $date = utils::convertDateToFrenchFormat($createAt);
-        $this->createAt = $date;
+        $this->createAt = $createAt;
         return $this;
     }
 

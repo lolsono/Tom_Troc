@@ -19,7 +19,16 @@ class LoginController extends CoreController {
      */
     public function showUserPage () : void
     {
-        $this->view->render("UserPage", "UserPage");
+
+        if (!isset($_SESSION['id'])) {
+            header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
+            exit;
+        }
+
+        $userManager = new \App\src\models\UserManager();
+        $user = $userManager->getUserById($_SESSION['id']);
+        $this->view->render("UserPage", "UserPage", ['user' => $user]);
+
     }
 
     /**
@@ -29,8 +38,6 @@ class LoginController extends CoreController {
     {
         session_destroy();
         header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
-
-        //suppresion de l'utilisateur
     }
 
     /**
@@ -93,13 +100,13 @@ class LoginController extends CoreController {
 
             if ($FormManager->isEmailValid($email)) {
 
-                //si mon mail et ok alors on fait la recherche utilisateur
                 $userData = $UserManager->SearchEmailUser($email);
                 $hachpassword = $userData['password'];
 
                 if ($Password->passwordValidate($password, $hachpassword)) {
 
                     //va déclencher la création de l'utilisateur
+                    $UserManager->createUserFromArray($userData);
 
                     $_SESSION['error'] = "";
                     $_SESSION['id'] = $userData['id'];

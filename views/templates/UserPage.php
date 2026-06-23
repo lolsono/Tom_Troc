@@ -10,9 +10,9 @@
             <img src="" alt="photo de profile utilisateur" />
             <a href="" >modifier</a>
 
-            <p>Nom utilisateur</p>
-            <p>depuis quand utilisateur<p>
-            <p>Nombre de livre en ligne</p>
+            <p><?= htmlspecialchars($user->getName()) ?></p>
+            <p><?= htmlspecialchars($user->getCreateAt()) ?><p>
+            <p><?= htmlspecialchars($user->getBookNumber()) ?></p>
         </div>
 
         <div class="userFormModif">

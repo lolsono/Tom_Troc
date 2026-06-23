@@ -29,7 +29,7 @@
             <ul>
                 <li><img src="public/img/logo.svg" alt="logo du site TomTroc"/></li>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="index.php?type=Book&action=post">Nos livres à l’échange</a></li>
+                <li><a href="index.php?type=Book&action=allBook">Nos livres à l’échange</a></li>
             </ul>
             <!-- add the dynamique bar -->
             <ul>
