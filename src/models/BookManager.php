@@ -26,5 +26,8 @@ class BookManager {
     }
 
     //recherche de book par id utilisateur
+
+    
+    //ajout en db
     
 }

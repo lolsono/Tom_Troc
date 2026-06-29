@@ -29,7 +29,7 @@ class UserManager extends User {
      * function get user by id
      * @param int $id
      */
-    public function getUserById (int $id) : User
+    public function getUserById (int $id) : ?User
     {
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();

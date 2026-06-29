@@ -21,6 +21,12 @@ class BookController extends CoreController {
         $this->view->render("AllBook", "AllBook", ['books' => $books] );
     }
 
+    /** print view details book */
+    public function showIdBook () : void {
+
+        $this->view->render("BookForm", "BookForm");
+    }
+
     /**
      * Manage form add book
      */
@@ -29,39 +35,61 @@ class BookController extends CoreController {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $FormManager = new \App\src\models\FormManager;
+            $ValidateInput = new \App\src\utils\ValidateInput;
+            $FileUploader = new \App\src\utils\FileUploader;
+
 
             $autor = $_POST['autor'];
             $title = $_POST['title'];
             $comment = $_POST['comment'];
-            $aviability = $_POST['aviability'];
+            $availability = $_POST['availability'];
 
+            $filePicture = $_FILES['filesPictures'];
 
-            if ($FormManager->isPseudoValid($pseudo)) {
+            if ($ValidateInput->isStringValid($title)) {
 
-                if ($FormManager->isEmailValid($email)) {
+            var_dump($filePicture);
 
-                    if ($FormManager->isPasswordValid($password)) {
+                if ($ValidateInput->isStringValid($autor)) {
 
-                        //une fois que c'est crée demande l'ajout en db
+                    if ($ValidateInput->isStringValid($comment)) {
 
-                        $_SESSION['error'] = "";
-                        $FormManager->createUser($email, $password, $pseudo);
-                        header("Location: /Tom_Troc/index.php?type=User&action=SingIn");
+                        if ($ValidateInput->isAvailabilityValid($availability)) {
+
+                            if ($FileUploader->pictureValidate($filePicture)) {
+
+                                //ajout en db avec les info
+                                $fileName = $FileUploader->fileUpload($filePicture);
+                                var_dump($fileName);
+
+                                //crée l'objet book
+
+                                //Id du book à personalisé
+                                $this->pathModels("type=Book&action=id");
+
+                            } else {
+                                $_SESSION['error'] = "Aucune image importé";
+                                $this->pathModels("type=Book&action=addBook");
+                            }
+
+                        } else {
+                            $_SESSION['error'] = "La disponibilité n'est pas renseigner";
+                            $this->pathModels("type=Book&action=addBook");
+                        }
 
                     }else {
-                        $_SESSION['error'] = "Mot de passe incorrect";
-                        header("Location: /Tom_Troc/index.php?type=User&action=SingUp");                       
+                        $_SESSION['error'] = "Le commentaire est vide";
+                        $this->pathModels("type=Book&action=addBook");                       
                     }
 
                 } else {
-                    $_SESSION['error'] = "Adresse email invalide";
-                    header("Location: /Tom_Troc/index.php?type=User&action=SingUp");
+                    $_SESSION['error'] = "Le nom de l'auteur est vide";
+                    $this->pathModels("type=Book&action=addBook");
                 }
 
             } else {
-                $_SESSION['error'] = "Pseudo invalide";
-                header("Location: /Tom_Troc/index.php?type=User&action=SingUp");
+                $_SESSION['error'] = "Le titre du livre est vide";
+                $this->pathModels("type=Book&action=addBook");
             }
 
         } else {

@@ -11,4 +11,13 @@ class CoreController {
         $this->view = new \App\views\View();
     }
 
+    /**
+     * Generated url path
+     */
+    public function pathModels (string $path) : void
+    {
+        header("Location: /Tom_Troc/index.php?$path");
+        exit;
+    }
+
 }

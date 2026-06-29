@@ -37,5 +37,5 @@ try {
 } catch (Exception $e) {
     // I capture the error and display it 
     $errorView = new App\views\View('Erreur');
-    $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
+    $errorView->render('errorPage', 'errorPage', ['errorMessage' => $e->getMessage()]);
 }

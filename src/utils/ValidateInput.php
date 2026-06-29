@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\src\models;
+namespace App\src\utils;
 
-class FormManager {
+class ValidateInput {
 
     /**
      * tcheck input password
@@ -66,15 +66,31 @@ class FormManager {
     public function isStringValid(string $string) : bool
     {
         if (
-            strlen($string) < 1
+            strlen($string) < 2
             || trim($string) === ""
         ) {
             return false;
-        } else {
-            return true;
         }
-           
+
+        return true;   
     }
 
-    //add a verified input file ( picture on format jpeg, png);
+    /**
+     * tcheck input availability
+     * @param string $availability select value
+     * @return bool True is validate.
+     */
+    public function isAvailabilityValid(string $availability): bool
+    {
+    
+        if (
+            !isset($availability)
+            || trim($availability) === ""
+            || !in_array($availability, ["disponible", "non_disponible"])
+        ) {
+            return false;
+        }
+
+        return true;
+    }
 }
