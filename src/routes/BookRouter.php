@@ -20,8 +20,18 @@ class BookRouter {
 
             $BookController->formValidate();
            
+        } elseif ($getParams['action'] === 'Details') {
+
+            if ($getParams['id'] >= 1) {
+
+                $BookController->showDetailsBook($getParams['id']);
+                
+            } else {
+                echo "Erreur 404 : la page que vous recherchez n'existe pas.";
+            }
+
         } else {
-             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
+            echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }
 
     }

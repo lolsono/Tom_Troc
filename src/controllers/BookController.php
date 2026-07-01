@@ -21,6 +21,19 @@ class BookController extends CoreController {
         $this->view->render("AllBook", "AllBook", ['books' => $books] );
     }
 
+    /** print view all Book */
+    public function showDetailsBook (int $bookId) : void {
+
+        $bookmanager = new \App\src\models\BookManager();
+        $UserManager = new \App\src\models\UserManager();
+
+        //modif pour prendre l'objet book avec le bon ID
+        $books = $bookmanager->getBookId($bookId);
+        $user = $UserManager->getUserById($_SESSION['id']);
+
+        $this->view->render("BookDetails", "BookDetails", ['books' => $books, 'user' => $user] );
+    }
+
     /** print view details book */
     public function showIdBook () : void {
 
@@ -37,18 +50,20 @@ class BookController extends CoreController {
 
             $ValidateInput = new \App\src\utils\ValidateInput;
             $FileUploader = new \App\src\utils\FileUploader;
+            $BookManager = new \App\src\models\BookManager;
 
+            $bookInput = [];
+            $availabilityInt = 0;
 
             $autor = $_POST['autor'];
             $title = $_POST['title'];
             $comment = $_POST['comment'];
             $availability = $_POST['availability'];
+            $userId = $_SESSION['id'];
 
             $filePicture = $_FILES['filesPictures'];
 
             if ($ValidateInput->isStringValid($title)) {
-
-            var_dump($filePicture);
 
                 if ($ValidateInput->isStringValid($autor)) {
 
@@ -56,16 +71,27 @@ class BookController extends CoreController {
 
                         if ($ValidateInput->isAvailabilityValid($availability)) {
 
+                            if ($availability === "disponible") {
+                                $availabilityInt = 1;
+                            } else {
+                                $availabilityInt = 0;
+                            }
+
                             if ($FileUploader->pictureValidate($filePicture)) {
 
-                                //ajout en db avec les info
                                 $fileName = $FileUploader->fileUpload($filePicture);
-                                var_dump($fileName);
 
-                                //crée l'objet book
+                                $bookInput = [
+                                    'user_id' => $userId,
+                                    'autor' => $autor,
+                                    'title' => $title,
+                                    'comment' => $comment,
+                                    'availability' => $availabilityInt,
+                                    'fileName' => $fileName,
+                                ];
 
-                                //Id du book à personalisé
-                                $this->pathModels("type=Book&action=id");
+                                $BookManager->createBook($bookInput);
+                                $this->pathModels("type=User&action=UserPage");
 
                             } else {
                                 $_SESSION['error'] = "Aucune image importé";

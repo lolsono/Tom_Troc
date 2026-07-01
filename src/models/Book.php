@@ -36,6 +36,25 @@ class Book {
     }
 
     /**
+     * Setter id Book. 
+     * @param int $id
+     */
+    public function setId(int $id) : self 
+    {
+        $this->id = $id; 
+        return $this;
+    }
+
+    /**
+     * Getter id Book
+     * @return int
+     */
+    public function getId() : int 
+    {
+        return $this->id;
+    }
+
+    /**
      * Setter pour l'id de l'utilisateur. 
      * @param int $userId
      */
@@ -44,11 +63,6 @@ class Book {
         $this->userId = $userId; 
         return $this;
     }
-
-    /**
-     * $book = new book();
-     * $book->setIdUser(1)->setTitle(name);
-     */
 
     /**
      * Getter pour l'id de l'utilisateur.
@@ -151,7 +165,9 @@ class Book {
      */
     public function getPictureLink() : string
     {
-        return $this->pictureLink;
+        //$rootPath = dirname(__DIR__, 2);
+        $link = 'public/' . $this->pictureLink;
+        return $link;
     }
     
     /**

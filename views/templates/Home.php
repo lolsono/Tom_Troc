@@ -14,6 +14,7 @@
     <p>card livre</p>
     <?php foreach($books as $book) { ?>
         <article class="book">
+            <img src="<?= $book->getPictureLink() ?>" alt="<?= $book->getTitle() ?>" />
             <h2><?= $book->getTitle() ?></h2>
             <h3><?= $book->getNameAutor() ?></h3>
             <span class="aviability">«</span>
@@ -21,7 +22,7 @@
             
             <div class="footer">
                 <span class="info">date creation</span>
-                <a class="info" href="index.php?action=showArticle&id=123">Lire +</a>
+                <a class="info" href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>">Lire +</a>
             </div>
         </article>
     <?php } ?>
