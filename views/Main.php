@@ -26,22 +26,36 @@
 <body>
     <header>
         <nav>
-            <ul>
-                <li><img src="public/img/logo.svg" alt="logo du site TomTroc"/></li>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="index.php?type=Book&action=allBook">Nos livres à l’échange</a></li>
-            </ul>
-            <!-- add the dynamique bar -->
-            <ul>
-                <?php if (isset($_SESSION['id']) && $_SESSION['id'] >= 0 ) : ?>
-                    <li><a href="index.php">Messagerie</a></li>
-                    <li><a href="index.php?type=User&action=UserPage">Mon compte</a></li>
-                    <li><a href="index.php?type=Book&action=addBook">Ajouter un livre</a></li>
-                    <li><a href="index.php?type=User&action=LogOut">Deconexion</a></li>
-                <?php else: ?>
-                    <li><a href="index.php?type=User&action=SingIn">Connexion</a></li>
-                <?php endif; ?>
-            </ul>
+            <!-- Checkbox -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+            <div class="logo">
+                <img src="public/img/logo.svg" alt="logo du site TomTroc"/>
+            </div>
+
+            <label for="menu-toggle" class="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </label>
+            
+            <div class="menu-container">
+                <ul class="main-menu">
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="index.php?type=Book&action=allBook">Nos livres à l’échange</a></li>
+                </ul>
+
+                <ul class="dynamic-menu">
+                    <?php if (isset($_SESSION['id']) && $_SESSION['id'] >= 0 ) : ?>
+                        <li><a href="index.php">Messagerie</a></li>
+                        <li><a href="index.php?type=User&action=UserPage">Mon compte</a></li>
+                        <li><a href="index.php?type=Book&action=addBook">Ajouter un livre</a></li>
+                        <li><a href="index.php?type=User&action=LogOut">Déconnexion</a></li>
+                    <?php else: ?>
+                        <li><a href="index.php?type=User&action=SingIn">Connexion</a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </nav>
     </header>
 

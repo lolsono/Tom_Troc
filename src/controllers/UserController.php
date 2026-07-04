@@ -34,9 +34,10 @@ class UserController extends CoreController {
         $dateUser = $utils->getTimeAgo($user->getCreateAt());
 
         //book user post
-        $books = $bookmanager->getAllBook();
+        $books = $bookmanager->getUserBook($_SESSION['id']);
+        $numberBook = count($books);
 
-        $this->view->render("UserPage", "UserPage", ['user' => $user, 'books' => $books, 'date' => $dateUser]);
+        $this->view->render("UserPage", "UserPage", ['user' => $user, '$numberBook' =>  $numberBook, 'books' => $books, 'date' => $dateUser]);
     }
 
     /**

@@ -49,6 +49,29 @@ class BookManager {
     }
 
     /**
+     * methode search book by user ID
+     * @param int $bookId
+     * @return object $Book
+     */
+    public function getUserBook(int $userId) : array
+    {
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "SELECT * FROM book WHERE user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        $book = [];
+
+        while ($row = $stmt->fetch()) {
+            $book[] = new \App\src\models\Book($row);
+        }
+        return $book;
+    }
+
+    /**
      * add book on db
      * @param array $bookInput all input form book
      * @return void

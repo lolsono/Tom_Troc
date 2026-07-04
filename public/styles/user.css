@@ -79,7 +79,7 @@
 }
 
 .error {
-    color: red;
+    color: #CB2D2D;
     margin-bottom: 20px;
 }
 
@@ -159,6 +159,41 @@
     max-height: 2.8em;
 }
 
+.book-availability {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.available {
+    height: 19px;
+    width: 100%;
+    max-width: 70px;
+    min-width: 50px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 8px;
+    background-color: #6DC5A1;
+    text-align: center;
+    line-height: 19px;
+}
+
+.unavailable {
+    height: 19px;
+    width: 100%;
+    max-width: 70px;
+    min-width: 50px;
+    border-radius: 30px;
+    color: white;
+    font-weight: 500;
+    font-size: 8px;
+    background-color: #C56D6D;
+    font-style: italic;
+    text-align: center;
+    line-height: 19px;
+}
+
 .book-actions {
     display: flex;
     gap: 8px;
@@ -172,7 +207,7 @@
 }
 .edit-btn {
     background: transparent;
-    color: #4CAF50;
+    color: black;
 }
 .delete-btn {
     background: transparent;

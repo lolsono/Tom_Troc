@@ -16,7 +16,7 @@
             <h3>BIBLIOTHEQUE</h3>
             <div class="numberBook">
                 <img src="public/img/logo_book.svg" alt="logo de livre"/>
-                <p><?= htmlspecialchars($user->getBookNumber()) ?> Livres</p>
+                <p><?=  $numberBook ?> Livres</p>
             </div>
         </div>
 
@@ -104,7 +104,16 @@
                     <div class="book-description">
                         <?= htmlspecialchars(mb_substr($book->getDescribe(), 0, 100)) . (mb_strlen($book->getDescribe()) > 100 ? '...' : '') ?>
                     </div>
-                    <div class="book-availability"><?= htmlspecialchars($book->getAvailablity()) ?></div>
+                    <div class="book-availability">
+                        <?php
+                        $availability = $book->getAvailablity();
+                        if ($availability == 1) {
+                            echo '<span class="available">disponible</span>';
+                        } else {
+                            echo '<span class="unavailable">non dispo.</span>';
+                        }
+                        ?>
+                    </div>
                     <div class="book-actions">
                         <button class="edit-btn" aria-label="Éditer le livre <?= htmlspecialchars($book->getTitle()) ?>">Éditer</button>
                         <button class="delete-btn" aria-label="Supprimer le livre <?= htmlspecialchars($book->getTitle()) ?>">Supprimer</button>
