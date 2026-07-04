@@ -18,6 +18,9 @@ class BookController extends CoreController {
         $bookmanager = new \App\src\models\BookManager();
         $books = $bookmanager->getAllBook();
 
+        $UserManager = new \App\src\models\UserManager();
+        $user = $UserManager->getUserById($_SESSION['id']);
+
         $this->view->render("AllBook", "AllBook", ['books' => $books] );
     }
 
@@ -27,11 +30,10 @@ class BookController extends CoreController {
         $bookmanager = new \App\src\models\BookManager();
         $UserManager = new \App\src\models\UserManager();
 
-        //modif pour prendre l'objet book avec le bon ID
-        $books = $bookmanager->getBookId($bookId);
+        $book = $bookmanager->getBookId($bookId);
         $user = $UserManager->getUserById($_SESSION['id']);
 
-        $this->view->render("BookDetails", "BookDetails", ['books' => $books, 'user' => $user] );
+        $this->view->render("BookDetails", "BookDetails", ['book' => $book, 'user' => $user] );
     }
 
     /** print view details book */

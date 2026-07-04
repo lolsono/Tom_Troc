@@ -11,8 +11,8 @@
 
     <div class="userCreate">
         <p>PROPRIÉTAIRE</p>
-        <img src="<?= $book->getPictureLink() ?>" alt="<?= $book->getName() ?>" />
-        <p><?= $book->getName() ?></p>
+        <img src="<?= $user->getPictureLink() ?>" alt="<?= $user->getName() ?>" />
+        <p><?= $user->getName() ?></p>
     </div>
 
 </article>

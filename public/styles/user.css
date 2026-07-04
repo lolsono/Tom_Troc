@@ -1,0 +1,374 @@
+/*
+*Page of SignIn / SignUp User
+*/
+
+.FormUser {
+    background-color: var(--articleBackground);
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+}
+
+.FormUser form {
+    background-color: transparent;
+    width: 100%;
+    margin: 5%;
+}
+
+.FormUser img {
+    width: 50%;
+}
+
+.FormUser fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-page {
+    color: black;
+}
+
+.link-page .underline {
+    text-decoration: underline;
+}
+
+.FormUser button {
+    background-color: var(--greenPrimary);
+    color: white;
+    width: 100%;
+    height: 63px;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.FormUser legend {
+    font-size: 36px;
+    font-weight: 400;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 30px;
+}
+
+.FormUser label {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "inter", serif;
+    color: var(--textGrey);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    margin-top: 10px;
+    height: 50px;
+    width: 100%;
+    border-radius: 6px;
+    border: solid;
+    border-color: #F0F0F0;
+}
+
+.error {
+    color: red;
+    margin-bottom: 20px;
+}
+
+
+/** User Page Create and Manager Book **/
+
+.user {
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: var(--articleBackgroundLight);
+}
+
+.user h2 {
+    padding: -10%;
+    color: black;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.CreateBook {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.articles-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.article-header {
+    display: grid;
+    grid-template-columns: 120px 1.5fr 1fr 2fr 1fr 1fr;
+    background: white;
+    font-weight: bold;
+    padding: 20px;
+    align-items: center;
+    gap: 10px;
+}
+
+.book {
+    display: grid;
+    grid-template-columns: 120px 1.5fr 1fr 2fr 1fr 1fr;
+    gap: 10px;
+    padding: 12px;
+    align-items: center;
+    background: white;
+}
+
+.book:nth-child(odd) {
+    background: #EDF2F6;
+}
+
+.book-photo img {
+    width: 78px;
+    height: 78px;
+    border-radius: 4px;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+}
+
+.book-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    max-height: 2.8em;
+}
+
+.book-actions {
+    display: flex;
+    gap: 8px;
+}
+.edit-btn, .delete-btn {
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-decoration: underline;
+}
+.edit-btn {
+    background: transparent;
+    color: #4CAF50;
+}
+.delete-btn {
+    background: transparent;
+    color: #f44336;
+}
+
+/** space of details user dans edit information of user **/
+
+.containerDetailsEdit {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 510px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/** user details **/
+
+.userDetails {
+    width: 50%;
+    height: 510px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.userDetails .pictureUser {
+  width: 135px;
+  height: 135px;
+  object-fit: cover;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
+.userDetails span {
+    width: 242px;
+    height: 1px;
+    border: solid #F5F3EF 1px;
+    background-color: #F5F3EF;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.nameUser {
+    color: black;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.dateUser {
+    color: var(--textGrey);
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.modifButton {
+    color: var(--textGrey);
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.userDetails h3 {
+    color: black;
+    font-weight: 600 bold;
+    font-size: 8px;
+    margin-bottom: 5px; 
+}
+
+.numberBook {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.numberBook img {
+    width: 10px;
+    height: 13px;
+    border-radius: none;
+    margin-right: 5px;
+}
+
+/** user modified profile **/
+
+.userFormModif {
+    width: 50%;
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.userFormModif form {
+    width: 90%;
+}
+
+#form-title-user {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    background-color: #EDF2F6;
+    color: black;
+    border: none;
+    padding: 10px;
+}
+
+.form-group label {
+    color: var(--textGrey);
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    /** space of create book **/
+
+    .article-header, .book {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .article-header {
+        display: none; 
+    }
+    .book {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px;
+    }
+    .book:nth-child(even) {
+        background: #f9f9f9;
+    }
+    .book-photo {
+        grid-column: 1 / -1;
+    }
+    .book-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-end;
+    }
+
+    /** space of details user dans edit information of user **/
+
+    .containerDetailsEdit {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 900px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .userDetails {
+        width: 100%;
+        height: 450;
+        margin-bottom: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    .userFormModif {
+        width: 100%;
+        height: 450;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    /** user details **/
+
+    /** user modified profile **/
+
+}

@@ -129,4 +129,24 @@ Class User {
         return $this->book_number;
     }
 
+    /**
+     * Setter path form directory upload
+     * @param string $pictureLink
+     */
+    public function setPictureLink(string $pictureLink) : self
+    {
+        $this->pictureLink = $pictureLink;
+        return $this;
+    }
+
+    /**
+     * Getter link picture
+     * @return string $pictureLink
+     */
+    public function getPictureLink() : string
+    {
+        $link = 'public/' . $this->pictureLink;
+        return $link;
+    }
+
 }

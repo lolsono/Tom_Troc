@@ -16,17 +16,31 @@ class Utils {
         return $date->format('Y-m-d H:i:s');
     }
 
-    //ajouter le système d'ajout dans le fichier upload + la lecture d'image
 
     /**
-     * add img on upload file.
-     * @param img $imgFile
+     * Transforme l'input date en retour string avec mois jour ou anné celon l'époque ou ca été crée
+     * @param string $CreateAt
+     * @return string $ValueCreateAt 
      */
-    public function addImgFile () : void
+    public static function getTimeAgo(string $CreateAt) : string
     {
-        //prende le fichier
-        //lui crée un lien et retourner le lien pour le mettre en db
-        //ajout le fichier dans le fichier upload
+        $createdAt = new DateTime($CreateAt);
+        $now = new DateTime();
+        $interval = $now->diff($createdAt);
+
+        $years = $interval->y;
+        $months = $interval->m;
+        $days = $interval->d;
+
+        if ($years > 0) {
+            return $years . ($years > 1 ? " ans" : " an");
+        } elseif ($months > 0) {
+            return $months . ($months > 1 ? " mois" : " mois");
+        } elseif ($days > 0) {
+            return $days . ($days > 1 ? " jours" : " jour");
+        } else {
+            return "aujourd'hui";
+        }
     }
 
 }

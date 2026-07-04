@@ -17,8 +17,7 @@
             <img src="<?= $book->getPictureLink() ?>" alt="<?= $book->getTitle() ?>" />
             <h2><?= $book->getTitle() ?></h2>
             <h3><?= $book->getNameAutor() ?></h3>
-            <span class="aviability">«</span>
-            <p><?= $book->getDescribe(400) ?></p>
+            <p>utilisateur</p>
             
             <div class="footer">
                 <span class="info">date creation</span>

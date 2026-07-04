@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="public/styles/main.css">
     <link rel="stylesheet" href="public/styles/home.css">
     <link rel="stylesheet" href="public/styles/book.css">
-    <link rel="stylesheet" href="public/styles/login.css">
+    <link rel="stylesheet" href="public/styles/user.css">
     <!-- Police Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,7 @@
                 <?php if (isset($_SESSION['id']) && $_SESSION['id'] >= 0 ) : ?>
                     <li><a href="index.php">Messagerie</a></li>
                     <li><a href="index.php?type=User&action=UserPage">Mon compte</a></li>
+                    <li><a href="index.php?type=Book&action=addBook">Ajouter un livre</a></li>
                     <li><a href="index.php?type=User&action=LogOut">Deconexion</a></li>
                 <?php else: ?>
                     <li><a href="index.php?type=User&action=SingIn">Connexion</a></li>

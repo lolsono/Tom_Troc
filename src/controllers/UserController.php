@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace App\src\controllers;
 
-class LoginController extends CoreController {
+class UserController extends CoreController {
 
     public function showSignUp () {
 
@@ -26,9 +26,17 @@ class LoginController extends CoreController {
         }
 
         $userManager = new \App\src\models\UserManager();
+        $bookmanager = new \App\src\models\BookManager();
         $user = $userManager->getUserById($_SESSION['id']);
-        $this->view->render("UserPage", "UserPage", ['user' => $user]);
 
+        //logique of date user
+        $utils = new \App\src\utils\Utils;
+        $dateUser = $utils->getTimeAgo($user->getCreateAt());
+
+        //book user post
+        $books = $bookmanager->getAllBook();
+
+        $this->view->render("UserPage", "UserPage", ['user' => $user, 'books' => $books, 'date' => $dateUser]);
     }
 
     /**

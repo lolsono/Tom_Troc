@@ -24,7 +24,8 @@ class BookRouter {
 
             if ($getParams['id'] >= 1) {
 
-                $BookController->showDetailsBook($getParams['id']);
+                $idInt = (int)$getParams['id'];
+                $BookController->showDetailsBook($idInt);
                 
             } else {
                 echo "Erreur 404 : la page que vous recherchez n'existe pas.";
