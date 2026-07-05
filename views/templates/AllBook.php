@@ -1,6 +1,7 @@
 <article class="lastBook">
     <h2>Nos livres à l’échange</h2>
-    <p>Recherche</p>
+    <<input type="text" placeholder="Rechercher...">
+    
     <?php foreach($books as $book) { ?>
         <article class="book">
             <h2><?= $book->getTitle() ?></h2>

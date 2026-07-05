@@ -37,7 +37,7 @@ class UserController extends CoreController {
         $books = $bookmanager->getUserBook($_SESSION['id']);
         $numberBook = count($books);
 
-        $this->view->render("UserPage", "UserPage", ['user' => $user, '$numberBook' =>  $numberBook, 'books' => $books, 'date' => $dateUser]);
+        $this->view->render("UserPage", "UserPage", ['user' => $user, 'numberBook' =>  $numberBook, 'books' => $books, 'date' => $dateUser]);
     }
 
     /**

@@ -62,7 +62,6 @@ class BookManager {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_id', $userId);
         $stmt->execute();
-        $row = $stmt->fetch();
         $book = [];
 
         while ($row = $stmt->fetch()) {

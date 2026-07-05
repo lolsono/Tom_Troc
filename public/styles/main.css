@@ -83,6 +83,7 @@ header nav {
 .logo img {
     height: 51px;
     width: 155px;
+    margin-right: 15px;
 }
 
 .main-menu, .dynamic-menu {
@@ -91,6 +92,7 @@ header nav {
     margin: 0;
     padding: 0;
     gap: 15px;
+    margin-right: 15px;
 }
 
 .main-menu li, .dynamic-menu li {
@@ -136,7 +138,8 @@ li a:hover {
 
 .menu-container {
     display: flex;
-    gap: 5%;
+    justify-content: space-between;
+    width: 100%;
 }
 
 /**
@@ -243,6 +246,7 @@ li a:hover {
     }
 
     .footer li {
+        margin-right: 0px;
         margin-top: 15px;
     }
 

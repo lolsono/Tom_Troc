@@ -13,7 +13,6 @@ try {
 
     if (isset($getParams['action']) && $getParams['action'] !== '') {
 
-        //si le type et Book on envoie sur BookRouter
         if ($getParams['type'] === 'Book') {
 
             $BookRouter = new App\src\routes\BookRouter();
@@ -24,7 +23,12 @@ try {
             $UserRouter = new App\src\routes\UserRouter();
             $UserRouter->router($getParams);
             
-        }else {
+        }elseif ($getParams['type'] === 'Message') {
+
+            $MessageRouter = new App\src\routes\MessageRouter();
+            $MessageRouter->router($getParams);
+            
+        } else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }
 

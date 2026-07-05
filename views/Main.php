@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="public/styles/home.css">
     <link rel="stylesheet" href="public/styles/book.css">
     <link rel="stylesheet" href="public/styles/user.css">
+    <link rel="stylesheet" href="public/styles/message.css">
     <!-- Police Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +48,7 @@
 
                 <ul class="dynamic-menu">
                     <?php if (isset($_SESSION['id']) && $_SESSION['id'] >= 0 ) : ?>
-                        <li><a href="index.php">Messagerie</a></li>
+                        <li><a href="index.php?type=Message&action=MessageHome">Messagerie</a></li>
                         <li><a href="index.php?type=User&action=UserPage">Mon compte</a></li>
                         <li><a href="index.php?type=Book&action=addBook">Ajouter un livre</a></li>
                         <li><a href="index.php?type=User&action=LogOut">Déconnexion</a></li>
@@ -75,3 +76,5 @@
     </footer>
 </body>
 </html>
+
+<script src="public/script/message.js" defer></script>
