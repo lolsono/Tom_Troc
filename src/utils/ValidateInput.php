@@ -66,7 +66,7 @@ class ValidateInput {
     public function isStringValid(string $string) : bool
     {
         if (
-            strlen($string) < 2
+            strlen($string) < 1
             || trim($string) === ""
         ) {
             return false;

@@ -3,31 +3,78 @@ declare(strict_types=1);
 
 namespace App\src\controllers;
 
-class MessageController extends CoreController {
+use DateTime;
 
-    //view home message
-    public function showHome () {
-
-        //envoyer le tableau d'objet
-
+class MessageController extends CoreController
+{
+    /**
+     * view all conversation
+     */
+    public function showHome()
+    {
         $MessageManager = new \App\src\models\MessageManager();
+
         $conv = $MessageManager->searchConversationByUserId($_SESSION['id']);
 
-        $this->view->render("Message", "Message", ['conversations' => $conv]);
+        $this->view->render("Message", "Message", [
+            'conversations' => $conv
+        ]);
     }
 
-    //aucun message selectionner
-
-    // envoie de message
-    public function showMessageId (int $conversationId) {
-
+    /**
+     * view conversation
+     */
+    public function showMessageId(int $conversationId)
+    {
         $MessageManager = new \App\src\models\MessageManager();
+
         $conv = $MessageManager->searchConversationByUserId($_SESSION['id']);
         $messages = $MessageManager->searchConversationById($conversationId);
+        $nameUser = $MessageManager->searchConversationByConvId($conversationId);
 
-        $this->view->render("Message", "Message", ['conversations' => $conv, 'messages' => $messages]);
+        $this->view->render("Message", "Message", [
+            'conversations' => $conv,
+            'messages' => $messages,
+            'conversationId' => $conversationId,
+            'nameUser' => $nameUser['user2_name']
+        ]);
     }
 
+    /**
+     * send message
+     */
+    public function createMessage(int $conversationId)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header("Location: index.php?type=Message&action=Message&id=" . $conversationId);
+            exit;
+        }
 
+        $ValidateInput = new \App\src\utils\ValidateInput();
+        $MessageManager = new \App\src\models\MessageManager();
 
+        $message = $_POST['message'];
+
+        if ($ValidateInput->isStringValid($message)) {
+
+            $dateTime = new DateTime();
+            $utils = new \App\src\utils\Utils();
+
+            $messageInput = [
+                'id' => null,
+                'sender_id' => $_SESSION['id'],
+                'conversation_id' => $conversationId,
+                'content' => $message,
+                'create_at' => $utils->convertDateToFrenchFormat($dateTime),
+            ];
+
+            $MessageManager->createMessage($messageInput);
+
+            header("Location: index.php?type=Message&action=Message&id=" . $conversationId);
+            exit;
+        }
+
+        header("Location: index.php?type=Message&action=Message&id=" . $conversationId);
+        exit;
+    }
 }

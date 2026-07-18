@@ -63,7 +63,7 @@ class Message {
      */
     public function getSenderId() : int 
     {
-        return $this->id;
+        return $this->idSender;
     }
 
     /**
@@ -105,7 +105,7 @@ class Message {
     }
 
     /**
-     * Setter de la date de création du compte
+     * Setter create date
      * @param DateTime $createAt
      */
     public function setCreateAt (string $date) : self
@@ -115,13 +115,23 @@ class Message {
     }
 
     /**
-     * Getter de la date de création du compt
-     * @return string $creatAt
+     * Getter create date
+     * @return string
      */
-    public function getCreateAt () : string
+    public function getCreateAt(): string
     {
         return $this->createAt;
     }
 
+    /**
+     * Getter date format message for user
+     * @return string $createAt
+     */
+    public function getCreateAtFormatMessage(): string
+    {
+        $utils = new \App\src\utils\Utils;
+        $this->createAt = $utils->getFormatMessageDate($this->createAt);
+        return $this->createAt;
+    }
 
 }

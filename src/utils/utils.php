@@ -18,7 +18,7 @@ class Utils {
 
 
     /**
-     * Transforme l'input date en retour string avec mois jour ou anné celon l'époque ou ca été crée
+     * update input date and return string for day, week, month for comparete time actual.
      * @param string $CreateAt
      * @return string $ValueCreateAt 
      */
@@ -41,6 +41,63 @@ class Utils {
         } else {
             return "aujourd'hui";
         }
+    }
+
+    /**
+     * update input date and return string for day, week, month for comparete time actual.
+     * @param string $CreateAt
+     * @return string $ValueCreateAt 
+     */
+    public static function getFomratTimeConversation(string $CreateAt) : string
+    {
+        $createdAt = new DateTime($CreateAt);
+        $now = new DateTime();
+
+        $diff = $now->getTimestamp() - $createdAt->getTimestamp();
+
+        if ($diff < 60) {
+            return "À l'instant";
+        }
+
+        if ($diff < 3600) {
+            $minutes = floor($diff / 60);
+            return $minutes . " min";
+        }
+
+        if ($diff < 86400) {
+            $hours = floor($diff / 3600);
+            return $hours . ($hours > 1 ? " heures" : " heure");
+        }
+
+        if ($diff < 604800) {
+            $days = floor($diff / 86400);
+            return $days . ($days > 1 ? " jours" : " jour");
+        }
+
+        if ($diff < 2592000) {
+            $weeks = floor($diff / 604800);
+            return $weeks . ($weeks > 1 ? " semaines" : " semaine");
+        }
+
+        if ($diff < 31536000) {
+            $months = floor($diff / 2592000);
+            return $months . " mois";
+        }
+
+        $years = floor($diff / 31536000);
+        return $years . ($years > 1 ? " ans" : " an");
+    }
+
+    /**
+     * Modificated format time for return message user
+     * @param string $createAt
+     * @return string  
+     */
+    public function getFormatMessageDate (string $CreateAt) : string 
+    {
+        $date = new DateTime($CreateAt);
+        return $date->format('d.m H:i');
+
     }
 
 }

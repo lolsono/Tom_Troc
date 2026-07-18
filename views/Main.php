@@ -76,5 +76,3 @@
     </footer>
 </body>
 </html>
-
-<script src="public/script/message.js" defer></script>

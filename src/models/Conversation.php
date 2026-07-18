@@ -11,6 +11,7 @@ class Conversation {
     private int $idUser1;
     private int $idUser2;
     private string $NameUser2Id = "";
+    private ?string $lastMessage = "";
     private string $createAt = ""; 
 
 
@@ -24,6 +25,7 @@ class Conversation {
         $this->idUser1 = $array['user1_id'];
         $this->idUser2 = $array['user2_id'];
         $this->NameUser2Id = $array['name'];
+        $this->lastMessage = $array['last_message'];
         $this->createAt = $array['create_at'];
 
     }
@@ -104,6 +106,25 @@ class Conversation {
         return $this->idUser2;
     }
 
+    /**
+     * Setter for last message
+     * @param string $lastMessage
+     */
+    public function setLastMessage(?string $lastMessage) : self
+    {
+        $this->lastMessage = $lastMessage;
+        return $this;
+    }
+
+    /**
+     * Getter for the last message
+     * @return string $lastMessage
+     */
+    public function getLastMessage () : ?string
+    {
+        return $this->lastMessage;
+    }
+
 
     /**
      * Setter de la date de création du compte
@@ -124,5 +145,16 @@ class Conversation {
         return $this->createAt;
     }
 
+    /**
+     * Getter create date and dynamique time
+     * (À l'instant, 5 min, 2 heures, 3 jours, etc.)
+     * @return string
+     */
+    public function getCreateAtFormatted (): string
+    {
+        $utils = new \App\src\utils\Utils;
+        $this->createAt = $utils->getFomratTimeConversation($this->createAt);
+        return $this->createAt;
+    }
 
 }

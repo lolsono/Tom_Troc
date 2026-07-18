@@ -23,6 +23,18 @@ class MessageRouter {
                 echo "Erreur 404 : la page que vous recherchez n'existe pas.";
             }
             
+        } elseif ($getParams['action'] === 'MessageSend') {
+
+            if ($getParams['id'] >= 1) {
+
+                $idInt = (int)$getParams['id'];
+                $MessageController->createMessage($idInt);
+                
+            } else {
+                echo "Message trop court !.";
+            }
+
+            
         } else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }

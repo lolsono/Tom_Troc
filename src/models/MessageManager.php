@@ -3,14 +3,10 @@ declare(strict_types=1);
 
 namespace App\src\models;
 
-use DateTime;
-
 class MessageManager {
 
-    //bien re enovyer un obket
-
     /**
-     * Function find conversation by UserID
+     * Function find all conversation by userID
      * @param int $userId
      * @return array
      */
@@ -19,9 +15,25 @@ class MessageManager {
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();
 
-        $sql = "SELECT conversation.*, user.name FROM conversation 
-        INNER JOIN user ON conversation.user2_id = user.id 
-        WHERE conversation.user1_id = :userId";
+        $sql = "SELECT 
+        conversation.id,
+        conversation.user1_id,
+        conversation.user2_id, 
+        user.name, 
+        message.content AS last_message, 
+        message.create_at AS create_at FROM conversation
+        INNER JOIN user ON conversation.user2_id = user.id
+
+        LEFT JOIN message
+        ON message.id = (
+            SELECT m.id FROM message m
+            WHERE m.conversation_id = conversation.id
+            AND m.sender_id <> :userId
+            ORDER BY m.create_at DESC
+            LIMIT 1
+        )
+
+        WHERE conversation.user1_id = :userId OR conversation.user2_id = :userId;";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':userId', $userId);
@@ -35,6 +47,31 @@ class MessageManager {
         }
 
         return $conversations;
+
+    }
+
+    /**
+     * Function find conversation details by convId
+     * @param int $convId
+     * @return array
+     */
+    public function searchConversationByConvId(int $convId): ?array
+    {
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "SELECT conversation.*, user.name AS user2_name
+                FROM conversation
+                INNER JOIN user ON conversation.user2_id = user.id
+                WHERE conversation.id = :convId";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':convId', $convId);
+        $stmt->execute();
+
+        //crée l'objet avec le retour
+
+        return $stmt->fetch();
 
     }
 
@@ -66,6 +103,28 @@ class MessageManager {
         }
 
         return $messages;
+    }
+
+    /**
+     * Create message
+     * @param array $messageInput
+     * @return void
+     */
+    public function createMessage(array $messageInput) : void
+    {
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "INSERT INTO message(id, sender_id, conversation_id, content, create_at) VALUES (:id, :sender_id, :conversation_id, :content, :create_at)";
+        $insertRecipe = $pdo->prepare($sql);
+
+        $insertRecipe->execute([
+            'id' => null,
+            'sender_id' => $messageInput['sender_id'],
+            'conversation_id' => $messageInput['conversation_id'],
+            'content' => $messageInput['content'],
+            'create_at' => $messageInput['create_at'],
+        ]);
     }
     
 }
