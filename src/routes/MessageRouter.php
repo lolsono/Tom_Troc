@@ -12,6 +12,17 @@ class MessageRouter {
 
             $MessageController->showHome();
 
+        } elseif ($getParams['action'] === 'Message') {
+
+            if ($getParams['id'] >= 1) {
+
+                $idInt = (int)$getParams['id'];
+                $MessageController->showMessageId($idInt);
+                
+            } else {
+                echo "Erreur 404 : la page que vous recherchez n'existe pas.";
+            }
+            
         } else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }
@@ -19,4 +30,3 @@ class MessageRouter {
     }
 
 }
-

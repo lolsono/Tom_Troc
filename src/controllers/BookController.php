@@ -18,9 +18,6 @@ class BookController extends CoreController {
         $bookmanager = new \App\src\models\BookManager();
         $books = $bookmanager->getAllBook();
 
-        $UserManager = new \App\src\models\UserManager();
-        $user = $UserManager->getUserById($_SESSION['id']);
-
         $this->view->render("AllBook", "AllBook", ['books' => $books] );
     }
 

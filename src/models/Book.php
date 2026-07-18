@@ -8,8 +8,6 @@ use utils;
 
 class Book {
 
-//tous les type de données
-
     private int $id;
     private int $userId;
     private string $title = "";
