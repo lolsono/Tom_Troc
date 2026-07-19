@@ -1,0 +1,195 @@
+/** Cards book **/
+
+.lastBook {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 700px;
+}
+
+.containerBooks {
+    justify-content: center;
+    gap: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+#linkCardsBooks {
+    width: 25%;
+    max-width: 200px;
+    background-color: transparent;
+    margin: 0px;
+    height: 200px;
+}
+
+.bookCards {
+    width: 100%;
+    height: 325px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+    background-color: #FFFFFF;
+}
+
+.bookCards img {
+    width: 100%;
+    object-fit: cover;
+    height: 200px;
+}
+
+.bookCards h2 {
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-left: 15px;  
+}
+
+.bookCards h3 {
+    color: var(--textGrey);
+    font-size: 14px;
+    font-weight: 400;  
+    margin-left: 15px;
+    margin-bottom: 20px; 
+}
+
+.bookCards p {
+    color: var(--textGrey);
+    font-size: 10px;
+    font-weight: 400;  
+    margin-left: 15px; 
+}
+
+/** page research book **/
+
+.containerResearch {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.containerResearch h2 {
+    margin-bottom: 0;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchBox {
+    position: relative;
+}
+
+.searchBox img {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+}
+
+.searchBox input {
+    width: 322px;
+    height: 50px;
+    padding-left: 45px;
+    border-radius: 6px;
+    border: 1px solid #F0F0F0;
+}
+
+/*  Mobile  */
+
+@media(max-width:768px){
+
+/** box page **/
+
+.lastBook {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+}
+
+/** page research book **/
+
+.containerResearch {
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 50px;
+    align-items: flex-start;
+}
+
+.containerBooks {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 70px;
+}
+
+.lastBook h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.containerResearch h2 {
+    margin-bottom: 15px;
+}
+
+.searchBox {
+    width: 100%;
+}
+
+.searchBox input {
+    width: 100%;
+    height: 50px;
+}
+
+/** Cards Book **/
+
+#linkCardsBooks {
+    margin: 0px;
+    height: 250px;
+}
+
+.bookCards {
+    width: 100%;
+    height: 250px;
+}
+
+.bookCards h2 {
+    color: black;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.bookCards h3 {
+    color: var(--textGrey);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.bookCards p {
+    color: var(--textGrey);
+    font-size: 8px;
+    font-weight: 400;
+}
+
+
+}

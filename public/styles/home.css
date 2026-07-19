@@ -199,3 +199,135 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+
+/*  Mobile  */
+
+@media(max-width:768px){
+
+
+    /** Article Join Hamza **/
+
+    .joinHamza {
+        flex-direction: column-reverse;
+        flex-wrap: nowrap;
+        padding-top: 0px;
+        padding-bottom: 50px;
+    }
+
+    .joinHamza .picture {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .joinHamza .picture figcaption {
+        font-weight: 400;
+        font-size: 12px;
+        font-style: italic;
+        color: #A6A6A6;
+        margin-top: 15px;
+        margin-right: 30px;
+    }
+
+    .joinHamza .text {
+        margin-top: 20px;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .joinHamza .text h2 {
+        font-weight: 400;
+        font-size: 30px;
+        margin-bottom: 15px;
+        font-family: "Playfair Display", serif;
+    }
+
+    /** Last books **/
+
+    #titleH2Homme {
+        text-align: center;
+        padding: 0 20px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    #buttonHomeBooks {
+    display: none;
+    }
+
+    /** Article how work **/
+
+    .howWork {
+        padding: 0 20px;
+    }
+
+    .howWork h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+
+    .howWork p {
+        font-family: "inter", serif;
+        font-weight: 300;
+        font-size: 14px;
+    }
+
+    .howWork ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .howWork li {
+        height: 140px;
+        width: 100%;
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+
+    /** view the bottom page **/
+
+    .valueTomTroc {
+        padding-top: 70px;
+        padding-bottom: 70px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .valueTomTroc h2 {
+        font-family: "Playfair Display", serif;
+        font-weight: 400;
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .valueTomTroc p:not(.teamTomTroc) {
+        font-family: "inter", serif;
+        font-weight: 300;
+        font-size: 14px;
+        margin-bottom: 30px;
+        color: #292929;
+    }
+
+    .teamTomTroc {
+        color: #A6A6A6;
+        font-family: "inter", serif;
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    .valueTomTroc div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .valueTomTroc img {
+        align-self: center;
+    }
+
+
+}

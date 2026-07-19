@@ -15,13 +15,14 @@ class BookManager {
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();
 
-        $sql = "SELECT * FROM book";
+        $sql = "SELECT book.*, user.name FROM book INNER JOIN user ON book.user_id  = user.id ";
         $result = $pdo->query($sql);
         $book = [];
 
         while ($row = $result->fetch()) {
             $book[] = new \App\src\models\Book($row);
         }
+
         return $book;
     }
 
@@ -35,7 +36,7 @@ class BookManager {
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();
 
-        $sql = "SELECT * FROM book WHERE id = :id";
+        $sql = "SELECT book.*, user.name FROM book INNER JOIN user ON book.user_id = user.id WHERE book.id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $bookId);
         $stmt->execute();

@@ -140,6 +140,7 @@
 }
 
 .received {
+    border-radius:18px;
     margin-top: 10px;
     margin-bottom: 10px;
     align-self:flex-start;
@@ -177,6 +178,7 @@
     align-self:flex-end;
     background:#FFFFFF; 
     color:black;
+    border-radius:18px;
 }
 
 .sent .box-message {
@@ -244,6 +246,7 @@
         width:100%;
         background-color: var(--articleBackgroundLight);
         margin-top:10px;
+        padding-right: 0px;
     }
 
     /* conv open */

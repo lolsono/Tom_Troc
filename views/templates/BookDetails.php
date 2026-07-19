@@ -3,16 +3,18 @@
     <img src="<?= $book->getPictureLink() ?>" alt="<?= $book->getTitle() ?>" />
 
     <div>
-        <h2><?= $book->getTitle() ?></h2>
-        <h3><?= $book->getNameAutor() ?></h3>
+        <h2><?= htmlspecialchars($book->getTitle()) ?></h2>
+        <h3><?= htmlspecialchars( $book->getNameAutor()) ?></h3>
         <span class="aviability">«</span>
-        <p><?= $book->getDescribe(400) ?></p>
+        <p><?= htmlspecialchars($book->getDescribe(400)) ?></p>
     </div>
 
     <div class="userCreate">
         <p>PROPRIÉTAIRE</p>
-        <img src="<?= $user->getPictureLink() ?>" alt="<?= $user->getName() ?>" />
-        <p><?= $user->getName() ?></p>
+        <img src="public/img/user_no_picutre.png" alt="image de l'utilisateur">
+        <p><?= htmlspecialchars($book->getNameUser()) ?></p>
     </div>
+
+    <a href="">Envoyer un message</a>
 
 </article>

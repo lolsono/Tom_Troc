@@ -343,25 +343,49 @@
 
 @media (max-width: 768px) {
 
+    /** Space of login **/
+
+    .FormUser {
+        flex-direction: column;
+    }
+
+    .FormUser img {
+        object-fit: cover;
+        height: 462px;
+        width: 100%;
+    }
+
+    .FormUser form {
+        background-color: transparent;
+        width: 100%;
+        margin: 5%;
+        padding: 0 20px;
+    }
+
     /** space of create book **/
 
     .article-header, .book {
         grid-template-columns: 1fr;
         gap: 8px;
     }
+    
     .article-header {
         display: none; 
     }
+
     .book {
         border-bottom: 1px solid #e0e0e0;
         padding: 10px;
     }
+
     .book:nth-child(even) {
         background: #f9f9f9;
     }
+
     .book-photo {
         grid-column: 1 / -1;
     }
+
     .book-actions {
         grid-column: 1 / -1;
         justify-content: flex-end;
@@ -405,5 +429,6 @@
     /** user details **/
 
     /** user modified profile **/
+
 
 }

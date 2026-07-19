@@ -1,18 +1,25 @@
 <article class="lastBook">
-    <h2>Nos livres à l’échange</h2>
-    <<input type="text" placeholder="Rechercher...">
+
+    <div class="containerResearch">
+        <h2>Nos livres à l’échange</h2>
+
+        <div class="searchBox">
+            <img src="public/img/icon_loop.svg" alt="Icône de recherche">
+            <input type="text" id="searchInput" placeholder="Rechercher un livre">
+        </div>
+    </div>
     
-    <?php foreach($books as $book) { ?>
-        <article class="book">
-            <h2><?= $book->getTitle() ?></h2>
-            <h3><?= $book->getNameAutor() ?></h3>
-            <span class="aviability">«</span>
-            <p><?= $book->getDescribe(400) ?></p>
-            
-            <div class="footer">
-                <span class="info">date creation</span>
-                <a class="info" href="index.php?action=showArticle&id=123">Lire +</a>
-            </div>
-        </article>
-    <?php } ?>
+    <div class="containerBooks">
+        <?php foreach($books as $book) { ?>
+            <a href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>" id="linkCardsBooks">
+                <article class="bookCards">
+                    <img src="<?= $book->getPictureLink() ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>" />
+                    <h2><?= htmlspecialchars($book->getTitle()) ?></h2>
+                    <h3><?= htmlspecialchars($book->getNameAutor()) ?></h3>
+                    <p>Vendu par : <?= htmlspecialchars($book->getNameUser()) ?></p>
+                </article>
+            </a>
+        <?php } ?>
+    </div>
+
 </article>

@@ -28,9 +28,8 @@ class BookController extends CoreController {
         $UserManager = new \App\src\models\UserManager();
 
         $book = $bookmanager->getBookId($bookId);
-        $user = $UserManager->getUserById($_SESSION['id']);
 
-        $this->view->render("BookDetails", "BookDetails", ['book' => $book, 'user' => $user] );
+        $this->view->render("BookDetails", "BookDetails", ['book' => $book] );
     }
 
     /** print view details book */

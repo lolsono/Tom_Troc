@@ -10,22 +10,22 @@
     </figure>
 </article>
 <article class="lastBook">
-    <h2>Les derniers livres ajoutés</h2>
-    <p>card livre</p>
-    <?php foreach($books as $book) { ?>
-        <article class="book">
-            <img src="<?= $book->getPictureLink() ?>" alt="<?= $book->getTitle() ?>" />
-            <h2><?= $book->getTitle() ?></h2>
-            <h3><?= $book->getNameAutor() ?></h3>
-            <p>utilisateur</p>
-            
-            <div class="footer">
-                <span class="info">date creation</span>
-                <a class="info" href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>">Lire +</a>
-            </div>
-        </article>
-    <?php } ?>
-    <a href="">Voir tous les livres</a>
+    <h2 id="titleH2Homme">Les derniers livres ajoutés</h2>
+
+    <div class="containerBooks">
+        <?php foreach($books as $book) { ?>
+            <a href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>" id="linkCardsBooks">
+                <article class="bookCards">
+                    <img src="<?= $book->getPictureLink() ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>" />
+                    <h2><?= htmlspecialchars($book->getTitle()) ?></h2>
+                    <h3><?= htmlspecialchars($book->getNameAutor()) ?></h3>
+                    <p>Vendu par : <?= htmlspecialchars($book->getNameUser()) ?></p>
+                </article>
+            </a>
+        <?php } ?>
+    </div>
+
+    <a href="index.php?type=Book&action=allBook" id="buttonHomeBooks">Voir tous les livres</a>
 </article>
 <article class="howWork">
     <h2>Comment ça marche ?</h2>

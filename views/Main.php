@@ -76,3 +76,5 @@
     </footer>
 </body>
 </html>
+
+<script src="public/script/searchBook.js"></script>

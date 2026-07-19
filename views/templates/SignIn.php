@@ -37,7 +37,7 @@
 
             <!-- submit button -->
             <button type="submit" class="buttonWhiteGreen">
-                S'inscrire
+                Se connecter
             </button>
 
             <!-- redirect form Sign Up -->

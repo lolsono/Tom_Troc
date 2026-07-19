@@ -12,6 +12,7 @@ class Book {
     private int $userId;
     private string $title = "";
     private string $nameAutor = "";
+    private string $nameUser = "";
     private string $describe = "";
     private int $availablity;
     private string $pictureLink = "";
@@ -31,6 +32,7 @@ class Book {
         $this->availablity = $array['availability'];
         $this->pictureLink = $array['picture'];
         $this->createAt = $array['createAt'];
+        $this->nameUser = $array['name'];
     }
 
     /**
@@ -107,6 +109,25 @@ class Book {
     public function getNameAutor() : string 
     {
         return $this->nameAutor;
+    }
+
+    /**
+     * Setter pour le nom de l'utilisateur.
+     * @param string $nameAutor
+     */
+    public function setNameUser(string $nameUser) : self 
+    {
+        $this->nameUser = $nameUser;
+        return $this;
+    }
+
+    /**
+     * Getter pour le nom de l'utilisateur.
+     * @return string $nameAutor
+     */
+    public function getNameUser() : string 
+    {
+        return $this->nameUser;
     }
 
     /**
