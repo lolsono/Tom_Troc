@@ -1,7 +1,7 @@
 
 <div class="user">
     <h2>Mon compte</h2>
-
+    
     <div class="containerDetailsEdit">
 
         <div class="userDetails">
@@ -97,7 +97,7 @@
 
                 <article class="book">
                     <div class="book-photo">
-                        <img src="<?= htmlspecialchars($book->getPictureLink()) ?>" alt="Couverture du livre <?= htmlspecialchars($book->getTitle()) ?>" />
+                        <img src="public/<?= htmlspecialchars($book->getPicture()) ?>" alt="Couverture du livre <?= htmlspecialchars($book->getTitle()) ?>" />
                     </div>
                     <div class="book-title"><?= htmlspecialchars($book->getTitle()) ?></div>
                     <div class="book-author"><?= htmlspecialchars($book->getNameAutor()) ?></div>
@@ -115,8 +115,8 @@
                         ?>
                     </div>
                     <div class="book-actions">
-                        <button class="edit-btn" aria-label="Éditer le livre <?= htmlspecialchars($book->getTitle()) ?>">Éditer</button>
-                        <button class="delete-btn" aria-label="Supprimer le livre <?= htmlspecialchars($book->getTitle()) ?>">Supprimer</button>
+                        <a href="index.php?type=Book&action=updateBook&id=<?= $book->getId() ?>" class="edit-btn">Éditer</a>
+                        <a href="index.php?type=Book&action=Delete&id=<?= $book->getId() ?>" class="delete-btn">Supprimer</a>
                     </div>
 
                 </article>

@@ -12,6 +12,17 @@ class BookRouter {
 
             $BookController->showForm();
             
+        } elseif($getParams['action'] === 'updateBook') {
+
+            if ($getParams['id'] >= 1) {
+
+                $idInt = (int)$getParams['id'];
+                $BookController->showFormUpdate($idInt);
+                
+            } else {
+                echo "Erreur 404 : la page que vous recherchez n'existe pas.";
+            }
+
         } elseif ($getParams['action'] === 'allBook') {
 
             $BookController->showAllBook();
@@ -31,6 +42,17 @@ class BookRouter {
                 echo "Erreur 404 : la page que vous recherchez n'existe pas.";
             }
 
+        } elseif ($getParams['action'] === 'Delete') {
+
+            if ($getParams['id'] >= 1) {
+
+                $idInt = (int)$getParams['id'];
+                $BookController->deleteBook($idInt);
+                
+            } else {
+                echo "Erreur 404 : la page que vous recherchez n'existe pas.";
+            }
+            
         } else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }

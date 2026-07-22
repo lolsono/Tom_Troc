@@ -1,6 +1,7 @@
 <div class="BookForm">
 
-    <p>Ajouter un livre</p>
+    <a href="index.php?type=User&action=UserPage" class="BookUpdateBack"><- retour</a>
+    <p>Modifier les informations</p>
 
     <div class="containerFormBook">
 
@@ -8,7 +9,7 @@
 
             <img
                 id="previewImage"
-                src="public/img/no-image.png"
+                src="public/<?= htmlspecialchars($book->getPicture()) ?>"
                 alt="Prévisualisation du livre"
             >
 
@@ -39,10 +40,11 @@
                         type="text"
                         id="title"
                         name="title"
-                        require
+                        required
                         minlength="1"
                         maxlength="255"
                         title="Le titre doit faire plus de 1 caractère"
+                        value="<?= htmlspecialchars($book->getTitle()) ?>"
                     >
                 </div>
 
@@ -53,10 +55,11 @@
                         type="text"
                         id="autor"
                         name="autor"
-                        require
+                        required
                         minlength="1"
                         maxlength="255"
                         title="L'auteur doit faire plus de 1 caractère"
+                        value="<?= htmlspecialchars($book->getNameAutor()) ?>"
                     >
                 </div>
 
@@ -67,8 +70,9 @@
                         type="text"
                         id="comment"
                         name="comment"
-                        require
+                        required
                         title="Le commentaire doit faire plus de 1 caractère"
+                        value="<?= htmlspecialchars($book->getDescribe()) ?>"
                     >
                 </div>
 
@@ -81,11 +85,16 @@
                         class="form-control"
                         required
                     >
-                        <option value="" disabled selected>Sélectionnez une option</option>
-                        <option value="disponible">Disponible</option>
-                        <option value="non_disponible">Non disponible</option>
+                        <option value="disponible" <?= $book->getAvailablity() == 1 ? 'selected' : '' ?>>
+                            Disponible
+                        </option>
+
+                        <option value="non_disponible" <?= $book->getAvailablity() == 0 ? 'selected' : '' ?>>
+                            Non disponible
+                        </option>
                     </select>
                 </div>
+
 
                 <!-- picture -->
                 <div class="form-group">
@@ -95,10 +104,14 @@
                         id="filesPictures"
                         name="filesPictures"
                         accept="image/jpeg, image/png, image/webp, image/svg"
-                        required
                         class="file-upload-input"
                     >
                 </div>
+
+                <!-- input for input valide forms -->
+                <input type="hidden" name="idBook" value="<?= $book->getId() ?>">
+
+                <input type="hidden" name="oldPicture" value="<?= htmlspecialchars($book->getPicture()) ?>">
 
                 <!-- submit button -->
                 <button type="submit" class="buttonSubmitBooks">

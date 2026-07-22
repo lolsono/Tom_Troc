@@ -33,7 +33,7 @@ fieldset {
 /**
  * Parms button green
  */
-article a:not(.buttonWhiteGreen) {
+.buttonGreen {
     background-color: var(--greenPrimary);
     color: white;
     width: 15%;
@@ -165,7 +165,7 @@ li a:hover {
     /**
     * Parms button green
     */
-    article a:not(.buttonWhiteGreen) {
+    .buttonGreen {
         background-color: var(--greenPrimary);
         color: white;
         width: 100%;

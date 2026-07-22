@@ -12,6 +12,15 @@ class BookController extends CoreController {
         $this->view->render("BookForm", "BookForm");
     }
 
+    /** print view upate Book */
+    public function showFormUpdate (int $bookId) : void {
+
+        $bookmanager = new \App\src\models\BookManager();
+        $book = $bookmanager->getBookId($bookId);
+
+        $this->view->render("BookFormUpdate", "BookFormUpdate", ['book' => $book]);
+    }
+
     /** print view all Book */
     public function showAllBook () : void {
 
@@ -25,8 +34,6 @@ class BookController extends CoreController {
     public function showDetailsBook (int $bookId) : void {
 
         $bookmanager = new \App\src\models\BookManager();
-        $UserManager = new \App\src\models\UserManager();
-
         $book = $bookmanager->getBookId($bookId);
 
         $this->view->render("BookDetails", "BookDetails", ['book' => $book] );
@@ -36,6 +43,22 @@ class BookController extends CoreController {
     public function showIdBook () : void {
 
         $this->view->render("BookForm", "BookForm");
+    }
+
+    /** delete book */
+    public function deleteBook (int $bookId) : void
+    {
+        $bookManager = new \App\src\models\BookManager();
+
+        $book = $bookManager->getBookId($bookId);
+        $bookPath = dirname(__DIR__, 2) . '/public/' . $book->getPicture();
+
+        if (file_exists($bookPath)) {
+            unlink($bookPath);
+        }
+
+        $bookManager->deleteBookById($bookId);
+        $this->pathModels("type=User&action=UserPage");
     }
 
     /**
@@ -58,6 +81,8 @@ class BookController extends CoreController {
             $comment = $_POST['comment'];
             $availability = $_POST['availability'];
             $userId = $_SESSION['id'];
+            $idBook = $_POST['idBook'];
+            $oldPicture = $_POST['oldPicture'];
 
             $filePicture = $_FILES['filesPictures'];
 
@@ -75,25 +100,70 @@ class BookController extends CoreController {
                                 $availabilityInt = 0;
                             }
 
-                            if ($FileUploader->pictureValidate($filePicture)) {
+                            if (isset($idBook)) {
 
-                                $fileName = $FileUploader->fileUpload($filePicture);
+                                // img no midified
+                                if (empty($_FILES['filesPictures']['tmp_name'])) {
 
-                                $bookInput = [
-                                    'user_id' => $userId,
-                                    'autor' => $autor,
-                                    'title' => $title,
-                                    'comment' => $comment,
-                                    'availability' => $availabilityInt,
-                                    'fileName' => $fileName,
-                                ];
+                                    $bookInput = [
+                                        'idBook' => $idBook,
+                                        'autor' => $autor,
+                                        'title' => $title,
+                                        'comment' => $comment,
+                                        'availability' => $availabilityInt,
+                                        'fileName' => $oldPicture,
+                                    ];
 
-                                $BookManager->createBook($bookInput);
+                                } else {
+
+                                    // New picture
+                                    if ($FileUploader->pictureValidate($filePicture)) {
+
+                                        $fileName = $FileUploader->fileUpload($filePicture);
+
+                                        $bookInput = [
+                                            'idBook' => $idBook,
+                                            'autor' => $autor,
+                                            'title' => $title,
+                                            'comment' => $comment,
+                                            'availability' => $availabilityInt,
+                                            'fileName' => $fileName,
+                                        ];
+
+                                    } else {
+
+                                        $_SESSION['error'] = "L'image est invalide";
+                                        $this->pathModels("type=User&action=UserPage");
+                                        return;
+
+                                    }
+                                }
+
+                                $BookManager->updateBook($bookInput);
                                 $this->pathModels("type=User&action=UserPage");
 
                             } else {
-                                $_SESSION['error'] = "Aucune image importé";
-                                $this->pathModels("type=Book&action=addBook");
+
+                                if ($FileUploader->pictureValidate($filePicture)) {
+
+                                    $fileName = $FileUploader->fileUpload($filePicture);
+
+                                    $bookInput = [
+                                        'user_id' => $userId,
+                                        'autor' => $autor,
+                                        'title' => $title,
+                                        'comment' => $comment,
+                                        'availability' => $availabilityInt,
+                                        'fileName' => $fileName,
+                                    ];
+                                    
+                                    $BookManager->createBook($bookInput);
+                                    $this->pathModels("type=User&action=UserPage");
+
+                                } else {
+                                    $_SESSION['error'] = "Aucune image importé";
+                                    $this->pathModels("type=Book&action=addBook");
+                                }
                             }
 
                         } else {

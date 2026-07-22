@@ -2,7 +2,7 @@
     <div class="text">
         <h2>Rejoignez nos lecteurs passionnés</h2>
         <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.</p>
-        <a href="">Découvrir</a>
+        <a href="" class="buttonGreen">Découvrir</a>
     </div>
     <figure class="picture">
         <img src="public/img/hamza-nouasria.png" alt="Photo de Hamza Nouasria entourée de livres" />
@@ -14,9 +14,9 @@
 
     <div class="containerBooks">
         <?php foreach($books as $book) { ?>
-            <a href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>" id="linkCardsBooks">
+            <a href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>" id="linkCardsBooks" class="buttonGreen">
                 <article class="bookCards">
-                    <img src="<?= $book->getPictureLink() ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>" />
+                    <img src="public/<?= $book->getPicture() ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>" />
                     <h2><?= htmlspecialchars($book->getTitle()) ?></h2>
                     <h3><?= htmlspecialchars($book->getNameAutor()) ?></h3>
                     <p>Vendu par : <?= htmlspecialchars($book->getNameUser()) ?></p>
@@ -25,7 +25,7 @@
         <?php } ?>
     </div>
 
-    <a href="index.php?type=Book&action=allBook" id="buttonHomeBooks">Voir tous les livres</a>
+    <a href="index.php?type=Book&action=allBook" id="buttonHomeBooks" class="buttonGreen">Voir tous les livres</a>
 </article>
 <article class="howWork">
     <h2>Comment ça marche ?</h2>

@@ -101,6 +101,37 @@ class BookManager {
     }
 
     /**
+     * Update book
+     * @param array $bookInput
+     * @return void
+     */
+    public function updateBook(array $bookInput): void
+    {
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "UPDATE book
+                SET
+                title = :title,
+                name_autor = :name_autor,
+                book_describ = :book_describ,
+                availability = :availability,
+                picture = :picture
+                WHERE id = :id";
+
+        $updateBook = $pdo->prepare($sql);
+
+        $updateBook->execute([
+            'id' => $bookInput['idBook'],
+            'title' => $bookInput['title'],
+            'name_autor' => $bookInput['autor'],
+            'book_describ' => $bookInput['comment'],
+            'availability' => $bookInput['availability'],
+            'picture' => $bookInput['fileName'],
+        ]);
+    }
+
+    /**
      * Tcheck name of picture no existe on db
      * @param string $namePicture
      * @return bool name picture no existe on db
@@ -120,5 +151,21 @@ class BookManager {
         $count = $result->fetchColumn();
 
         return $count === 0;
+    }
+
+    /**
+     * Delete book by id
+     * @param int $bookId
+     * @return void
+     */
+    public function deleteBookById(int $bookId): void
+    {
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "DELETE FROM book WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $bookId, \PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

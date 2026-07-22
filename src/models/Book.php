@@ -12,7 +12,7 @@ class Book {
     private int $userId;
     private string $title = "";
     private string $nameAutor = "";
-    private string $nameUser = "";
+    private ?string $nameUser = "";
     private string $describe = "";
     private int $availablity;
     private string $pictureLink = "";
@@ -32,7 +32,7 @@ class Book {
         $this->availablity = $array['availability'];
         $this->pictureLink = $array['picture'];
         $this->createAt = $array['createAt'];
-        $this->nameUser = $array['name'];
+        $this->nameUser = $array['name'] ?? null;
     }
 
     /**
@@ -177,18 +177,17 @@ class Book {
         $this->pictureLink = $pictureLink;
         return $this;
     }
-
+    
     /**
-     * Getter pour le lien de l'image
+     * Getter link picture
      * @return string $pictureLink
      */
-    public function getPictureLink() : string
+    public function getPicture() : string
     {
-        //$rootPath = dirname(__DIR__, 2);
-        $link = 'public/' . $this->pictureLink;
+        $link = $this->pictureLink;
         return $link;
     }
-    
+
     /**
      * Setter de la date de création du compte
      * @param DateTime $createAt
