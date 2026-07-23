@@ -15,6 +15,7 @@ class MessageManager {
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();
 
+        /** conversation and user */
         $sql = "SELECT 
         conversation.id,
         conversation.user1_id,
@@ -22,8 +23,14 @@ class MessageManager {
         user.name, 
         message.content AS last_message, 
         message.create_at AS create_at FROM conversation
-        INNER JOIN user ON conversation.user2_id = user.id
+        INNER JOIN user ON user.id =
+        CASE
+            WHEN conversation.user1_id = :userId
+                THEN conversation.user2_id
+            ELSE conversation.user1_id
+        END
 
+        /** Last message */
         LEFT JOIN message
         ON message.id = (
             SELECT m.id FROM message m
@@ -53,27 +60,33 @@ class MessageManager {
     /**
      * Function find conversation details by convId
      * @param int $convId
+     * @param int $myIdUserConnect
      * @return array
      */
-    public function searchConversationByConvId(int $convId): ?array
+    public function searchConversationByConvId(int $convId, int $myIdUserConnect): ?array
     {
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();
 
-        $sql = "SELECT conversation.*, user.name AS user2_name
-                FROM conversation
-                INNER JOIN user ON conversation.user2_id = user.id
+        $sql = "SELECT conversation.*, user.name AS other_user_name FROM conversation
+                INNER JOIN user
+                    ON (
+                        (conversation.user1_id = :userId AND user.id = conversation.user2_id)
+                        OR
+                        (conversation.user2_id = :userId AND user.id = conversation.user1_id)
+                    )
                 WHERE conversation.id = :convId";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':convId', $convId);
-        $stmt->execute();
 
-        //crée l'objet avec le retour
+        $stmt->execute([
+            'convId' => $convId,
+            'userId' => $myIdUserConnect,
+        ]);
 
         return $stmt->fetch();
-
     }
+
 
     /**
      * Function find message by conversation id

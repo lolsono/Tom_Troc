@@ -30,13 +30,14 @@ class MessageController extends CoreController
 
         $conv = $MessageManager->searchConversationByUserId($_SESSION['id']);
         $messages = $MessageManager->searchConversationById($conversationId);
-        $nameUser = $MessageManager->searchConversationByConvId($conversationId);
+        $myIdUserConnect = $_SESSION['id'];
+        $nameUser = $MessageManager->searchConversationByConvId($conversationId, $myIdUserConnect);
 
         $this->view->render("Message", "Message", [
             'conversations' => $conv,
             'messages' => $messages,
             'conversationId' => $conversationId,
-            'nameUser' => $nameUser['user2_name']
+            'nameUser' => $nameUser['other_user_name']
         ]);
     }
 
