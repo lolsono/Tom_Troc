@@ -33,7 +33,11 @@ class UserRouter {
 
             $UserController->logOut();
             
-        }else {
+        }elseif ($getParams['action'] === 'ModifUserValidate') {
+            
+            $UserController->ModifUserValidate();
+
+        } else {
             echo "Erreur 404 : la page que vous recherchez n'existe pas.";
         }
 

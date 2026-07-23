@@ -104,5 +104,32 @@ class UserManager extends User {
         ]);
 
     }
+
+    /**
+     * Update user
+     * @param array $userInput
+     * @return void
+     */
+    public function updateUser(array $userInput): void
+    {
+        $db = \App\src\config\DBConnect::getInstance();
+        $pdo = $db->getPDO();
+
+        $sql = "UPDATE user
+                SET
+                name = :name,
+                password = :password,
+                email = :email
+                WHERE id = :id";
+
+        $updateUser = $pdo->prepare($sql);
+
+        $updateUser->execute([
+            'id' => $userInput['id'],
+            'name' => $userInput['name'],
+            'email' => $userInput['email'],
+            'password' => $userInput['password'],
+        ]);
+    }
     
 }

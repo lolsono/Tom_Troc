@@ -94,6 +94,61 @@ class UserController extends CoreController {
     }
 
     /**
+     * Modif details user
+     */
+    public function ModifUserValidate () : void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $ValidateInput = new \App\src\utils\ValidateInput;
+            $UserManager = new \App\src\models\UserManager;
+
+            $pseudo = $_POST['pseudo'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            if ($ValidateInput->isPseudoValid($pseudo)) {
+
+                if ($ValidateInput->isEmailValid($email)) {
+
+                    if ($ValidateInput->isPasswordValid($password)) {
+
+                        $Password = new \App\src\utils\Password;
+                        $passwordHach = $Password->hachage($password);
+
+                        $_SESSION['error'] = "";
+
+                        $userInput = [
+                            'id' => $_SESSION['id'],
+                            'name' => $pseudo,
+                            'email' => $email,
+                            'password' => $passwordHach,
+                        ];
+
+                        $UserManager->updateUser($userInput);
+                        $this->pathModels("type=User&action=UserPage");
+
+                    }else {
+                        $_SESSION['error'] = "Mot de passe incorrect";
+                        $this->pathModels("type=User&action=UserPage");                       
+                    }
+
+                } else {
+                    $_SESSION['error'] = "Adresse email invalide";
+                    $this->pathModels("type=User&action=UserPage");
+                }
+
+            } else {
+                $_SESSION['error'] = "Pseudo invalide";
+                $this->pathModels("type=User&action=UserPage");
+            }
+
+        } else {
+            exit;
+        }
+    }
+
+    /**
      * Manage form log in
      */
     public function SignInValidate () : void
@@ -133,7 +188,8 @@ class UserController extends CoreController {
         } else {
             exit;
         }
-
     }
+
+    
 
 }

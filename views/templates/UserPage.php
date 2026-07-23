@@ -23,7 +23,7 @@
         <div class="userFormModif">
 
             <form
-                action="index.php?type=User&action=SingInValidate"
+                action="index.php?type=User&action=ModifUserValidate"
                 method="POST"
                 aria-labelledby="form-title"
                 novalidate
@@ -33,6 +33,7 @@
 
                     <?php if (isset($_SESSION['error']) && !empty($_SESSION['error'])): ?>
                         <p class="error"><?= htmlspecialchars($_SESSION['error']) ?></p>
+                        <?php unset($_SESSION['error']); ?>
                     <?php endif; ?>
 
                     <!-- email -->

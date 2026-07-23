@@ -10,6 +10,7 @@
 
             <?php if (isset($_SESSION['error']) && !empty($_SESSION['error'])): ?>
                 <p class="error"><?= htmlspecialchars($_SESSION['error']) ?></p>
+                <?php unset($_SESSION['error']); ?>
             <?php endif; ?>
 
             <!-- pseudo -->
