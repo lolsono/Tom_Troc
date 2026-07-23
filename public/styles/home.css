@@ -220,6 +220,11 @@
         object-fit: cover;
     }
 
+    .joinHamza .picture img {
+        width: 100%;
+        object-fit: cover;
+    }
+
     .joinHamza .picture figcaption {
         font-weight: 400;
         font-size: 12px;

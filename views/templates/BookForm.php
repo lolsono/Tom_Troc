@@ -1,6 +1,6 @@
 <div class="BookForm">
 
-    <p>Ajouter un livre</p>
+    <p class="titlePageBook">Ajouter un livre</p>
 
     <div class="containerFormBook">
 
@@ -63,13 +63,13 @@
                 <!-- comment -->
                 <div class="form-group">
                     <label for="comment">Commentaire</label>
-                    <input
-                        type="text"
+                    <textarea
                         id="comment"
                         name="comment"
-                        require
+                        required
                         title="Le commentaire doit faire plus de 1 caractère"
-                    >
+                        rows="5"
+                    ></textarea>
                 </div>
 
                 <!-- availability -->

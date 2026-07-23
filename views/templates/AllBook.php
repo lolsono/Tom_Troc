@@ -13,6 +13,11 @@
         <?php foreach($books as $book) { ?>
             <a href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>" id="linkCardsBooks" class="buttonGreen">
                 <article class="bookCards">
+
+                    <?php if ($book->getAvailablity() == 0) { ?>
+                        <span class="badgeUnavailable">non dispo.</span>
+                    <?php } ?>
+
                     <img src="public/<?= $book->getPicture() ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>" />
                     <h2><?= htmlspecialchars($book->getTitle()) ?></h2>
                     <h3><?= htmlspecialchars($book->getNameAutor()) ?></h3>

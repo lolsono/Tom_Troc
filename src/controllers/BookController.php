@@ -190,6 +190,5 @@ class BookController extends CoreController {
             exit;
         }
     }
-
-
+    
 }

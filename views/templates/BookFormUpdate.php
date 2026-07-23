@@ -1,7 +1,7 @@
 <div class="BookForm">
 
     <a href="index.php?type=User&action=UserPage" class="BookUpdateBack"><- retour</a>
-    <p>Modifier les informations</p>
+    <p class="titlePageBook">Modifier les informations</p>
 
     <div class="containerFormBook">
 
@@ -66,14 +66,13 @@
                 <!-- comment -->
                 <div class="form-group">
                     <label for="comment">Commentaire</label>
-                    <input
-                        type="text"
+                    <textarea
                         id="comment"
                         name="comment"
                         required
                         title="Le commentaire doit faire plus de 1 caractère"
-                        value="<?= htmlspecialchars($book->getDescribe()) ?>"
-                    >
+                        rows="5"
+                    ><?= htmlspecialchars($book->getDescribe()) ?></textarea>
                 </div>
 
                 <!-- availability -->

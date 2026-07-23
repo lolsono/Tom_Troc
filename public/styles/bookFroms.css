@@ -12,9 +12,10 @@
     font-size: 12px;
     margin-bottom: 20px;
     text-decoration: none;
+    padding-left: 0px;
 }
 
-.BookForm > p:nth-child(2){
+.titlePageBook {
     margin-top: 20px;
     color: #292929;
     font-weight: 400;
@@ -33,6 +34,7 @@
     gap: 80px;
     align-items: flex-start;
     background-color: #ffff;
+    flex-direction: row;
 }
 
 
@@ -93,6 +95,21 @@ legend{
     margin-bottom: 25px;
 }
 
+.form-group textarea {
+    background-color: #EDF2F6;
+    color: black;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+}
+
 .form-group select{
     width: 100%;
     padding: 14px 18px;
@@ -139,4 +156,71 @@ legend{
 
 .buttonWhiteGreen{
     margin-top: 20px;
+}
+
+
+/*  Mobile  */
+
+@media(max-width:768px){
+
+    .BookForm {
+        padding-left: 0px;
+        padding-bottom: 30px;
+        padding-right: 0px;
+        background-color: var(--articleBackgroundLight);
+    }
+
+    .BookUpdateBack {
+        padding-left: 10px;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .titlePageBook {
+        padding: 20px;
+        margin-top: 0px;
+        color: #292929;
+        font-weight: 400;
+        font-size: 30px;
+        font-family: "Playfair Display", serif;
+    }
+    
+    .containerFormBook {
+        background-color: white;
+        width: 100%;
+        border-radius: 20px;
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .previewBook {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 20px;
+    }
+
+    .modifyImage {
+        margin-top: 20px;
+        cursor: pointer;
+        color: #292929;
+        font-weight: 400;
+        font-size: 16px;
+        text-decoration: underline;
+    }
+
+    .containerFormBook form {
+        padding-left: 20px;
+        padding-bottom: 40px;
+        padding-right: 20px;
+        width: 100%;
+    }
+
+    .buttonSubmitBooks {
+        width: 100%;
+    }
+
 }

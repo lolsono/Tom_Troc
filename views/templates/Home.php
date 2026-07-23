@@ -13,7 +13,7 @@
     <h2 id="titleH2Homme">Les derniers livres ajoutés</h2>
 
     <div class="containerBooks">
-        <?php foreach($books as $book) { ?>
+        <?php foreach (array_slice($books, -4) as $book) { ?>
             <a href="index.php?type=Book&action=Details&id=<?= $book->getId() ?>" id="linkCardsBooks" class="buttonGreen">
                 <article class="bookCards">
                     <img src="public/<?= $book->getPicture() ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>" />

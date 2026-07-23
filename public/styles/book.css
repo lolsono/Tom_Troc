@@ -27,6 +27,7 @@
 }
 
 .bookCards {
+    position: relative;
     width: 100%;
     height: 325px;
     display: flex;
@@ -40,6 +41,22 @@
     width: 100%;
     object-fit: cover;
     height: 200px;
+}
+
+.badgeUnavailable {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: #C56D6D;
+    color: white;
+    padding: 6px 20px;
+    border-radius: 20px;
+
+    font-size: 8px;
+    font-weight: 500;
+
+    z-index: 10;
 }
 
 .bookCards h2 {
