@@ -11,7 +11,7 @@ class UserManager extends User {
      * Search with email user
      * @param string $email
      */
-    public function SearchEmailUser ($email) : array
+    public function SearchEmailUser ($email) : array|bool
     {
         $db = \App\src\config\DBConnect::getInstance();
         $pdo = $db->getPDO();

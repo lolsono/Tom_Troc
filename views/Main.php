@@ -1,3 +1,8 @@
+<?php
+$type = $_GET['type'] ?? '';
+$action = $_GET['action'] ?? '';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,15 +40,25 @@
             
             <div class="menu-container">
                 <ul class="main-menu">
-                    <li><a href="index.php">Accueil</a></li>
-                    <li><a href="index.php?type=Book&action=allBook">Nos livres à l’échange</a></li>
+                    <li><a href="index.php" class="<?= ($type === '' && $action === '') ? 'active' : '' ?>">Accueil</a></li>
+                    <li><a href="index.php?type=Book&action=allBook" class="<?= ($type === 'Book' && $action === 'allBook') ? 'active' : '' ?>">Nos livres à l’échange</a></li>
                 </ul>
 
                 <ul class="dynamic-menu">
                     <?php if (isset($_SESSION['id']) && $_SESSION['id'] >= 0 ) : ?>
-                        <li><a href="index.php?type=Message&action=MessageHome">Messagerie</a></li>
-                        <li><a href="index.php?type=User&action=UserPage">Mon compte</a></li>
-                        <li><a href="index.php?type=Book&action=addBook">Ajouter un livre</a></li>
+                        <li>
+                            <img src="public/img/icon_messagerie.svg" alt="Messagerie">
+                            <a href="index.php?type=Message&action=MessageHome" class="<?= ($type === 'Message' && $action === 'MessageHome' || $action === 'Message') ? 'active' : '' ?>">
+                                Messagerie
+                            </a>
+                        </li>
+                        <li>
+                            <img src="public/img/icon_mon_compte.svg" alt="Mon compte">
+                            <a href="index.php?type=User&action=UserPage" class="<?= ($type === 'User' && $action === 'UserPage') ? 'active' : '' ?>">
+                                Mon compte
+                            </a>
+                        </li>
+                        <li><a href="index.php?type=Book&action=addBook" class="<?= ($type === 'Book' && $action === 'addBook') ? 'active' : '' ?>">Ajouter un livre</a></li>
                         <li><a href="index.php?type=User&action=LogOut">Déconnexion</a></li>
                     <?php else: ?>
                         <li><a href="index.php?type=User&action=SingIn">Connexion</a></li>

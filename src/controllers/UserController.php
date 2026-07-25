@@ -63,19 +63,29 @@ class UserController extends CoreController {
             $email = $_POST['email'];
             $password = $_POST['password'];
 
+            $EmailUserExisting = $UserManager->SearchEmailUser($email);
+
             if ($ValidateInput->isPseudoValid($pseudo)) {
 
                 if ($ValidateInput->isEmailValid($email)) {
 
-                    if ($ValidateInput->isPasswordValid($password)) {
+                    if ($EmailUserExisting) {
 
-                        $_SESSION['error'] = "";
-                        $UserManager->createUser($email, $password, $pseudo);
-                        $this->pathModels("type=User&action=SingIn");
+                        $_SESSION['error'] = "Email déjà existant";
+                        $this->pathModels("type=User&action=SingUp");                         
 
-                    }else {
-                        $_SESSION['error'] = "Mot de passe incorrect";
-                        $this->pathModels("type=User&action=SingUp");                       
+                    } else {
+
+                        if ($ValidateInput->isPasswordValid($password)) {
+
+                            $_SESSION['error'] = "";
+                            $UserManager->createUser($email, $password, $pseudo);
+                            $this->pathModels("type=User&action=SingIn");
+
+                        }else {
+                            $_SESSION['error'] = "Mot de passe incorrect";
+                            $this->pathModels("type=User&action=SingUp");                       
+                        }
                     }
 
                 } else {
@@ -102,7 +112,7 @@ class UserController extends CoreController {
 
             $ValidateInput = new \App\src\utils\ValidateInput;
             $UserManager = new \App\src\models\UserManager;
-
+        
             $pseudo = $_POST['pseudo'];
             $email = $_POST['email'];
             $password = $_POST['password'];

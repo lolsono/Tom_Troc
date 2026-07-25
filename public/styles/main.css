@@ -36,7 +36,7 @@ fieldset {
 .buttonGreen {
     background-color: var(--greenPrimary);
     color: white;
-    width: 15%;
+    width: 20%;
     height: 63px;
     display: flex;
     border-radius: 10px;
@@ -45,6 +45,11 @@ fieldset {
     font-weight: 600;
     font-size: 16px;
     min-width: 150px;
+    transition: background-color 0.5s ease;
+}
+
+.buttonGreen:hover {
+    background-color: #3B8F68;
 }
 
 /**
@@ -53,7 +58,7 @@ fieldset {
 .buttonWhiteGreen {
     background-color: var(--lightGrey);
     color: var(--greenPrimary);
-    width: 15%;
+    width: 20%;
     height: 63px;
     display: flex;
     border-radius: 10px;
@@ -63,11 +68,21 @@ fieldset {
     font-size: 16px;
     min-width: 150px;
     border: solid 1px var(--greenPrimary);
+    transition: background-color 0.5s ease;
+}
+
+.buttonWhiteGreen:hover {
+    background-color: #3B8F68;
+    color: white;
 }
 
 /**
  * Parms navigation bar
  */
+
+.active {
+    font-weight: bold;
+}
 
 header nav {
     background-color: var(--articleBackground);
@@ -98,6 +113,10 @@ header nav {
 .main-menu li, .dynamic-menu li {
     display: flex;
     align-items: center;
+}
+
+.main-menu li img, .dynamic-menu li img {
+    margin-right: 5px;
 }
 
 li a {
