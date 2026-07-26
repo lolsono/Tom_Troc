@@ -8,7 +8,7 @@ class View {
 
     private string $title = "";
 
-/**
+    /**
     * This method returns a complete page.
     * @param string $viewName : title page on the folder views
     * @param string $title : title from page html
@@ -20,7 +20,6 @@ class View {
     {
         $viewPath = $this->viewPath($viewName);
         $content = $this->_renderViewFromTemplate($viewPath, $params);
-        $title = $this->title;
 
         //bufferisation :
         ob_start();

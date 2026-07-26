@@ -175,20 +175,30 @@ class UserController extends CoreController {
             if ($ValidateInput->isEmailValid($email)) {
 
                 $userData = $UserManager->SearchEmailUser($email);
-                $hachpassword = $userData['password'];
 
-                if ($Password->passwordValidate($password, $hachpassword)) {
+                if ($userData) {
 
-                    $UserManager->createUserFromArray($userData);
+                    $hachpassword = $userData['password'];
 
-                    $_SESSION['error'] = "";
-                    $_SESSION['id'] = $userData['id'];
-                    $this->pathModels("type=User&action=UserPage");   
+                    if ($Password->passwordValidate($password, $hachpassword)) {
+
+                        $UserManager->createUserFromArray($userData);
+
+                        $_SESSION['error'] = "";
+                        $_SESSION['id'] = $userData['id'];
+                        $this->pathModels("type=User&action=UserPage");   
+                    } else {
+                        $_SESSION['error'] = "Mot de passe incorrect";
+                        $_SESSION['isLoged'] = false;
+                        $this->pathModels("type=User&action=SingIn");
+                    }
+
                 } else {
-                    $_SESSION['error'] = "Mot de passe incorrect";
                     $_SESSION['isLoged'] = false;
-                    $this->pathModels("type=User&action=SingIn");
+                    $_SESSION['error'] = "Aucun compte trouvé";
+                    $this->pathModels("type=User&action=SingIn");                   
                 }
+
             } else {
                 $_SESSION['isLoged'] = false;
                 $_SESSION['error'] = "Adresse email invalide";
@@ -199,7 +209,5 @@ class UserController extends CoreController {
             exit;
         }
     }
-
-    
 
 }

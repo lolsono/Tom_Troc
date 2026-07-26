@@ -134,6 +134,10 @@ li a:hover {
     display: none;
 }
 
+.hamburger .sr-only {
+    display: none;
+}
+
 .hamburger {
     display: none;
     background: none;

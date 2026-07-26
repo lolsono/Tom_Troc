@@ -33,6 +33,7 @@ $action = $_GET['action'] ?? '';
             </div>
 
             <label for="menu-toggle" class="hamburger">
+                <span class="sr-only">Ouvrir ou fermer le menu</span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
