@@ -18,7 +18,12 @@ class BookController extends CoreController {
         $bookmanager = new \App\src\models\BookManager();
         $book = $bookmanager->getBookId($bookId);
 
-        $this->view->render("BookFormUpdate", "BookFormUpdate", ['book' => $book]);
+        if ($book ==! null){
+            $this->view->render("BookFormUpdate", "BookFormUpdate", ['book' => $book]);
+        } else {
+           $this->pathModels("type=Book&action=allBook"); 
+        } 
+        
     }
 
     /** print view all Book */
@@ -36,7 +41,11 @@ class BookController extends CoreController {
         $bookmanager = new \App\src\models\BookManager();
         $book = $bookmanager->getBookId($bookId);
 
-        $this->view->render("BookDetails", "BookDetails", ['book' => $book] );
+        if ($book ==! null){
+            $this->view->render("BookDetails", "BookDetails", ['book' => $book] );
+        } else {
+           $this->pathModels("type=Book&action=allBook"); 
+        }   
     }
 
     /** print view details book */
@@ -51,6 +60,11 @@ class BookController extends CoreController {
         $bookManager = new \App\src\models\BookManager();
 
         $book = $bookManager->getBookId($bookId);
+
+        if ($book == null) {
+          $this->pathModels("type=User&action=UserPage");  
+        }
+
         $bookPath = dirname(__DIR__, 2) . '/public/' . $book->getPicture();
 
         if (file_exists($bookPath)) {

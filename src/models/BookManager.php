@@ -42,11 +42,11 @@ class BookManager {
         $stmt->execute();
         $row = $stmt->fetch();
 
-        if (isset($row)) {
-            return new \App\src\models\Book($row);
+        if ($row === false) {
+           return null; 
         }
 
-        return null;
+        return new \App\src\models\Book($row);
     }
 
     /**

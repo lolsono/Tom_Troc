@@ -30,6 +30,11 @@ class MessageController extends CoreController
 
         $conv = $MessageManager->searchConversationByUserId($_SESSION['id']);
         $messages = $MessageManager->searchConversationById($conversationId);
+
+        if ($messages == null) {
+            $this->pathModels("type=Message&action=MessageHome"); 
+        }
+
         $myIdUserConnect = $_SESSION['id'];
         $nameUser = $MessageManager->searchConversationByConvId($conversationId, $myIdUserConnect);
 
